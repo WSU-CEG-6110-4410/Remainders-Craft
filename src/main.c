@@ -2295,62 +2295,82 @@ void handle_mouse_input() {
     }
 }
 
-void handle_movement(double dt) {
+void handle_movement(double dt, Model *model)
+{
     static float dy = 0;
-    State *s = &g->players->state;
+    State *s = &model->players->state;
     int sz = 0;
     int sx = 0;
-    if (!g->typing) {
+    if (!model->typing)
+    {
         float m = dt * 1.0;
-        g->ortho = glfwGetKey(g->window, CRAFT_KEY_ORTHO) ? 64 : 0;
-        g->fov = glfwGetKey(g->window, CRAFT_KEY_ZOOM) ? 15 : 65;
-        if (glfwGetKey(g->window, CRAFT_KEY_FORWARD)) sz--;
-        if (glfwGetKey(g->window, CRAFT_KEY_BACKWARD)) sz++;
-        if (glfwGetKey(g->window, CRAFT_KEY_LEFT)) sx--;
-        if (glfwGetKey(g->window, CRAFT_KEY_RIGHT)) sx++;
-        if (glfwGetKey(g->window, GLFW_KEY_LEFT)) s->rx -= m;
-        if (glfwGetKey(g->window, GLFW_KEY_RIGHT)) s->rx += m;
-        if (glfwGetKey(g->window, GLFW_KEY_UP)) s->ry += m;
-        if (glfwGetKey(g->window, GLFW_KEY_DOWN)) s->ry -= m;
+        model->ortho = glfwGetKey(model->window, CRAFT_KEY_ORTHO) ? 64 : 0;
+        model->fov = glfwGetKey(model->window, CRAFT_KEY_ZOOM) ? 15 : 65;
+        if (glfwGetKey(model->window, CRAFT_KEY_FORWARD))
+            sz--;
+        if (glfwGetKey(model->window, CRAFT_KEY_BACKWARD))
+            sz++;
+        if (glfwGetKey(model->window, CRAFT_KEY_LEFT))
+            sx--;
+        if (glfwGetKey(model->window, CRAFT_KEY_RIGHT))
+            sx++;
+        if (glfwGetKey(model->window, GLFW_KEY_LEFT))
+            s->rx -= m;
+        if (glfwGetKey(model->window, GLFW_KEY_RIGHT))
+            s->rx += m;
+        if (glfwGetKey(model->window, GLFW_KEY_UP))
+            s->ry += m;
+        if (glfwGetKey(model->window, GLFW_KEY_DOWN))
+            s->ry -= m;
     }
     float vx, vy, vz;
-    get_motion_vector(g->flying, sz, sx, s->rx, s->ry, &vx, &vy, &vz);
-    if (!g->typing) {
-        if (glfwGetKey(g->window, CRAFT_KEY_JUMP)) {
-            if (g->flying) {
+    get_motion_vector(model->flying, sz, sx, s->rx, s->ry, &vx, &vy, &vz);
+    if (!model->typing)
+    {
+        if (glfwGetKey(model->window, CRAFT_KEY_JUMP))
+        {
+            if (model->flying)
+            {
                 vy = 1;
             }
-            else if (dy == 0) {
+            else if (dy == 0)
+            {
                 dy = 8;
             }
         }
     }
-    float speed = g->flying ? 20 : 5;
+    float speed = model->flying ? 20 : 5;
     int estimate = roundf(sqrtf(
-        powf(vx * speed, 2) +
-        powf(vy * speed + ABS(dy) * 2, 2) +
-        powf(vz * speed, 2)) * dt * 8);
+                              powf(vx * speed, 2) +
+                              powf(vy * speed + ABS(dy) * 2, 2) +
+                              powf(vz * speed, 2)) *
+                          dt * 8);
     int step = MAX(8, estimate);
     float ut = dt / step;
     vx = vx * ut * speed;
     vy = vy * ut * speed;
     vz = vz * ut * speed;
-    for (int i = 0; i < step; i++) {
-        if (g->flying) {
+    for (int i = 0; i < step; i++)
+    {
+        if (model->flying)
+        {
             dy = 0;
         }
-        else {
+        else
+        {
             dy -= ut * 25;
             dy = MAX(dy, -250);
         }
         s->x += vx;
         s->y += vy + dy * ut;
         s->z += vz;
-        if (collide(2, &s->x, &s->y, &s->z)) {
+        if (collide(2, &s->x, &s->y, &s->z))
+        {
             dy = 0;
         }
     }
-    if (s->y < 0) {
+    if (s->y < 0)
+    {
         s->y = highest_block(s->x, s->z) + 2;
     }
 }
@@ -2684,7 +2704,7 @@ int main(int argc, char **argv) {
             handle_mouse_input();
 
             // HANDLE MOVEMENT //
-            handle_movement(dt);
+            handle_movement(dt, g);
 
             // HANDLE DATA FROM SERVER //
             char *buffer = client_recv();
