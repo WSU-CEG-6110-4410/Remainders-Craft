@@ -1,4 +1,6 @@
 #include "sign.h"
+#include "map.h"
+#include "tinycthread.h"
 #include <GL/glew.h>
 
 #ifndef _structs_h_
@@ -11,6 +13,7 @@
 #define MAX_PATH_LENGTH 256
 #define MAX_ADDR_LENGTH 256
 #define MAX_CHUNKS 8192
+
 
 typedef struct
 {
