@@ -10,6 +10,7 @@
 #include "string.h"
 #include <stdio.h>
 #include "auth.h"
+#include "chunk.h"
 
 
 void get_motion_vector(int flying, int sz, int sx, float rx, float ry,
@@ -49,24 +50,6 @@ void get_motion_vector(int flying, int sz, int sx, float rx, float ry,
         *vy = 0;
         *vz = sinf(rx + strafe);
     }
-}
-
-int chunked(float x)
-{
-    return floorf(roundf(x) / CHUNK_SIZE);
-}
-
-Chunk *find_chunk(int p, int q, Model *model)
-{
-    for (int i = 0; i < model->chunk_count; i++)
-    {
-        Chunk *chunk = model->chunks + i;
-        if (chunk->p == p && chunk->q == q)
-        {
-            return chunk;
-        }
-    }
-    return 0;
 }
 
 int collide(int height, float *x, float *y, float *z, Model *model)
@@ -272,13 +255,6 @@ void get_sight_vector(float rx, float ry, float *vx, float *vy, float *vz)
     *vz = sinf(rx - RADIANS(90)) * m;
 }
 
-int chunk_distance(Chunk *chunk, int p, int q)
-{
-    int dp = ABS(chunk->p - p);
-    int dq = ABS(chunk->q - q);
-    return MAX(dp, dq);
-}
-
 int _hit_test(
     Map *map, float max_distance, int previous,
     float x, float y, float z,
@@ -405,54 +381,6 @@ int hit_test_face(Player *player, int *x, int *y, int *z, int *face, Model *mode
         }
     }
     return 0;
-}
-
-int has_lights(Chunk *chunk, Model *model)
-{
-    if (!SHOW_LIGHTS)
-    {
-        return 0;
-    }
-    for (int dp = -1; dp <= 1; dp++)
-    {
-        for (int dq = -1; dq <= 1; dq++)
-        {
-            Chunk *other = chunk;
-            if (dp || dq)
-            {
-                other = find_chunk(chunk->p + dp, chunk->q + dq, model);
-            }
-            if (!other)
-            {
-                continue;
-            }
-            Map *map = &other->lights;
-            if (map->size)
-            {
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-
-void dirty_chunk(Chunk *chunk, Model *model)
-{
-    chunk->dirty = 1;
-    if (has_lights(chunk, model))
-    {
-        for (int dp = -1; dp <= 1; dp++)
-        {
-            for (int dq = -1; dq <= 1; dq++)
-            {
-                Chunk *other = find_chunk(chunk->p + dp, chunk->q + dq, model);
-                if (other)
-                {
-                    other->dirty = 1;
-                }
-            }
-        }
-    }
 }
 
 void unset_sign(int x, int y, int z, Model *model)
