@@ -5,10 +5,6 @@
 
 void get_motion_vector(int flying, int sz, int sx, float rx, float ry, float *vx, float *vy, float *vz);
 
-int chunked(float x);
-
-Chunk *find_chunk(int p, int q, Model *model);
-
 int collide(int height, float *x, float *y, float *z, Model *model);
 
 int highest_block(float x, float z, Model *model);
@@ -18,8 +14,6 @@ void handle_movement(double dt, Model *model);
 void handle_mouse_input(Model *model);
 
 void get_sight_vector(float rx, float ry, float *vx, float *vy, float *vz);
-
-int chunk_distance(Chunk *chunk, int p, int q);
 
 _hit_test(
     Map *map, float max_distance, int previous,
@@ -32,10 +26,6 @@ int hit_test(
     int *bx, int *by, int *bz, Model *model);
 
 int hit_test_face(Player *player, int *x, int *y, int *z, int *face, Model *model);
-
-int has_lights(Chunk *chunk);
-
-void dirty_chunk(Chunk *chunk, Model *model);
 
 void unset_sign(int x, int y, int z, Model *model);
 

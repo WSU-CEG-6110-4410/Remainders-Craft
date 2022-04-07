@@ -1,7 +1,8 @@
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "sign.h"
 #include "map.h"
 #include "tinycthread.h"
-#include <GL/glew.h>
 
 #ifndef _structs_h_
 #define _structs_h
