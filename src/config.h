@@ -51,4 +51,7 @@
 #define CHUNK_SIZE 32
 #define COMMIT_INTERVAL 5
 
+#define MODE_OFFLINE 0
+#define MODE_ONLINE 1
+
 #endif
