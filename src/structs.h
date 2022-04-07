@@ -1,11 +1,12 @@
+#ifndef _structs_h_
+#define _structs_h_
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "sign.h"
 #include "map.h"
 #include "tinycthread.h"
-
-#ifndef _structs_h_
-#define _structs_h
+#include "config.h"
 
 #define MAX_NAME_LENGTH 32
 #define MAX_PLAYERS 128

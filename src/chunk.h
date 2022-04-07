@@ -1,6 +1,8 @@
 #ifndef _chunk_h_
 #define _chunk_h_
 
+#include "structs.h"
+
 int chunked(float x);
 
 Chunk *find_chunk(int p, int q, Model *model);
