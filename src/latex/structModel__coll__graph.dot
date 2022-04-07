@@ -1,0 +1,27 @@
+digraph "Model"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Model",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" block0\nblock1\ncopy0\ncopy1" ];
+  Node2 [label="Block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structBlock.html"];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" chunks" ];
+  Node3 [label="Chunk",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structChunk.html"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" signs" ];
+  Node4 [label="SignList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structSignList.html"];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" data" ];
+  Node5 [label="Sign",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structSign.html"];
+  Node6 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" map\nlights" ];
+  Node6 [label="Map",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structMap.html"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" data" ];
+  Node7 [label="MapEntry",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$unionMapEntry.html"];
+  Node8 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" workers" ];
+  Node8 [label="Worker",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structWorker.html"];
+  Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" item" ];
+  Node9 [label="WorkerItem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structWorkerItem.html"];
+  Node6 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" light_maps\nblock_maps" ];
+  Node10 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" players" ];
+  Node10 [label="Player",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structPlayer.html"];
+  Node11 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" state1\nstate2\nstate" ];
+  Node11 [label="State",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structState.html"];
+}

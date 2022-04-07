@@ -1,0 +1,183 @@
+\hypertarget{client_8c}{}\section{client.\+c File Reference}
+\label{client_8c}\index{client.\+c@{client.\+c}}
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}client.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tinycthread.\+h\char`\"{}}\newline
+Include dependency graph for client.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{client_8c_a142810068f1b99cd93d3fc9f0e160e02}{Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE}~1048576
+\item 
+\#define \hyperlink{client_8c_ab05e00e8cea9db60202e746d95818997}{R\+E\+C\+V\+\_\+\+S\+I\+ZE}~4096
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{client_8c_aa325e8dc525dfd4f2b61084fde488886}{client\+\_\+enable} ()
+\item 
+void \hyperlink{client_8c_a7e909ae4682502875e13408e525d425c}{client\+\_\+disable} ()
+\item 
+int \hyperlink{client_8c_abb798e3677ffc402f49ab6c4138378d8}{get\+\_\+client\+\_\+enabled} ()
+\item 
+int \hyperlink{client_8c_aecb289e6b8d0147fa44ddf7d1e5db7ce}{client\+\_\+sendall} (int sd, char $\ast$data, int length)
+\item 
+void \hyperlink{client_8c_a64ee564bcdb00afd6ac5451c9384f5f4}{client\+\_\+send} (char $\ast$data)
+\item 
+void \hyperlink{client_8c_a588876f19dc7a8519f4693a8458d94d1}{client\+\_\+version} (int version)
+\item 
+void \hyperlink{client_8c_a3e600b608f3d4bb8019e5c41b1249370}{client\+\_\+login} (const char $\ast$username, const char $\ast$identity\+\_\+token)
+\item 
+void \hyperlink{client_8c_a8958c169ddf770c54dde942c986199f1}{client\+\_\+position} (float x, float y, float z, float rx, float ry)
+\item 
+void \hyperlink{client_8c_a53b8540e54c542d09e2d947c419fe2e6}{client\+\_\+chunk} (int p, int q, int key)
+\item 
+void \hyperlink{client_8c_a12b5eb5754c1bb50bbde65c6bccce16f}{client\+\_\+block} (int x, int y, int z, int w)
+\item 
+void \hyperlink{client_8c_ae726acbb7f4e824520cae360b26155ae}{client\+\_\+light} (int x, int y, int z, int w)
+\item 
+void \hyperlink{client_8c_a7688d439c90eb01a3480db0f89d2cc01}{client\+\_\+sign} (int x, int y, int z, int face, const char $\ast$text)
+\item 
+void \hyperlink{client_8c_aead7e376b121af80bc94eca71d1ca4ec}{client\+\_\+talk} (const char $\ast$text)
+\item 
+char $\ast$ \hyperlink{client_8c_a03e3943e47927507f114fe750177139f}{client\+\_\+recv} ()
+\item 
+int \hyperlink{client_8c_a922af254b68a706c1b204a97cba3ccbf}{recv\+\_\+worker} (void $\ast$arg)
+\item 
+void \hyperlink{client_8c_a7c0bfea8388d9417f7b9fec38c055c53}{client\+\_\+connect} (char $\ast$hostname, int port)
+\item 
+void \hyperlink{client_8c_aa0b8370ec510034dd30751a7de33edca}{client\+\_\+start} ()
+\item 
+void \hyperlink{client_8c_ab1ad08ffad20c886c71a0f57cb4e56bf}{client\+\_\+stop} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{client_8c_a142810068f1b99cd93d3fc9f0e160e02}\label{client_8c_a142810068f1b99cd93d3fc9f0e160e02}} 
+\index{client.\+c@{client.\+c}!Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE@{Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE}}
+\index{Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE@{Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE}{QUEUE\_SIZE}}
+{\footnotesize\ttfamily \#define Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE~1048576}
+
+\mbox{\Hypertarget{client_8c_ab05e00e8cea9db60202e746d95818997}\label{client_8c_ab05e00e8cea9db60202e746d95818997}} 
+\index{client.\+c@{client.\+c}!R\+E\+C\+V\+\_\+\+S\+I\+ZE@{R\+E\+C\+V\+\_\+\+S\+I\+ZE}}
+\index{R\+E\+C\+V\+\_\+\+S\+I\+ZE@{R\+E\+C\+V\+\_\+\+S\+I\+ZE}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{R\+E\+C\+V\+\_\+\+S\+I\+ZE}{RECV\_SIZE}}
+{\footnotesize\ttfamily \#define R\+E\+C\+V\+\_\+\+S\+I\+ZE~4096}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{client_8c_a12b5eb5754c1bb50bbde65c6bccce16f}\label{client_8c_a12b5eb5754c1bb50bbde65c6bccce16f}} 
+\index{client.\+c@{client.\+c}!client\+\_\+block@{client\+\_\+block}}
+\index{client\+\_\+block@{client\+\_\+block}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+block()}{client\_block()}}
+{\footnotesize\ttfamily void client\+\_\+block (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{w }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a53b8540e54c542d09e2d947c419fe2e6}\label{client_8c_a53b8540e54c542d09e2d947c419fe2e6}} 
+\index{client.\+c@{client.\+c}!client\+\_\+chunk@{client\+\_\+chunk}}
+\index{client\+\_\+chunk@{client\+\_\+chunk}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+chunk()}{client\_chunk()}}
+{\footnotesize\ttfamily void client\+\_\+chunk (\begin{DoxyParamCaption}\item[{int}]{p,  }\item[{int}]{q,  }\item[{int}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a7c0bfea8388d9417f7b9fec38c055c53}\label{client_8c_a7c0bfea8388d9417f7b9fec38c055c53}} 
+\index{client.\+c@{client.\+c}!client\+\_\+connect@{client\+\_\+connect}}
+\index{client\+\_\+connect@{client\+\_\+connect}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+connect()}{client\_connect()}}
+{\footnotesize\ttfamily void client\+\_\+connect (\begin{DoxyParamCaption}\item[{char $\ast$}]{hostname,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a7e909ae4682502875e13408e525d425c}\label{client_8c_a7e909ae4682502875e13408e525d425c}} 
+\index{client.\+c@{client.\+c}!client\+\_\+disable@{client\+\_\+disable}}
+\index{client\+\_\+disable@{client\+\_\+disable}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+disable()}{client\_disable()}}
+{\footnotesize\ttfamily void client\+\_\+disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_aa325e8dc525dfd4f2b61084fde488886}\label{client_8c_aa325e8dc525dfd4f2b61084fde488886}} 
+\index{client.\+c@{client.\+c}!client\+\_\+enable@{client\+\_\+enable}}
+\index{client\+\_\+enable@{client\+\_\+enable}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+enable()}{client\_enable()}}
+{\footnotesize\ttfamily void client\+\_\+enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_ae726acbb7f4e824520cae360b26155ae}\label{client_8c_ae726acbb7f4e824520cae360b26155ae}} 
+\index{client.\+c@{client.\+c}!client\+\_\+light@{client\+\_\+light}}
+\index{client\+\_\+light@{client\+\_\+light}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+light()}{client\_light()}}
+{\footnotesize\ttfamily void client\+\_\+light (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{w }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a3e600b608f3d4bb8019e5c41b1249370}\label{client_8c_a3e600b608f3d4bb8019e5c41b1249370}} 
+\index{client.\+c@{client.\+c}!client\+\_\+login@{client\+\_\+login}}
+\index{client\+\_\+login@{client\+\_\+login}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+login()}{client\_login()}}
+{\footnotesize\ttfamily void client\+\_\+login (\begin{DoxyParamCaption}\item[{const char $\ast$}]{username,  }\item[{const char $\ast$}]{identity\+\_\+token }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a8958c169ddf770c54dde942c986199f1}\label{client_8c_a8958c169ddf770c54dde942c986199f1}} 
+\index{client.\+c@{client.\+c}!client\+\_\+position@{client\+\_\+position}}
+\index{client\+\_\+position@{client\+\_\+position}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+position()}{client\_position()}}
+{\footnotesize\ttfamily void client\+\_\+position (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{rx,  }\item[{float}]{ry }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a03e3943e47927507f114fe750177139f}\label{client_8c_a03e3943e47927507f114fe750177139f}} 
+\index{client.\+c@{client.\+c}!client\+\_\+recv@{client\+\_\+recv}}
+\index{client\+\_\+recv@{client\+\_\+recv}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+recv()}{client\_recv()}}
+{\footnotesize\ttfamily char$\ast$ client\+\_\+recv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a64ee564bcdb00afd6ac5451c9384f5f4}\label{client_8c_a64ee564bcdb00afd6ac5451c9384f5f4}} 
+\index{client.\+c@{client.\+c}!client\+\_\+send@{client\+\_\+send}}
+\index{client\+\_\+send@{client\+\_\+send}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+send()}{client\_send()}}
+{\footnotesize\ttfamily void client\+\_\+send (\begin{DoxyParamCaption}\item[{char $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_aecb289e6b8d0147fa44ddf7d1e5db7ce}\label{client_8c_aecb289e6b8d0147fa44ddf7d1e5db7ce}} 
+\index{client.\+c@{client.\+c}!client\+\_\+sendall@{client\+\_\+sendall}}
+\index{client\+\_\+sendall@{client\+\_\+sendall}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+sendall()}{client\_sendall()}}
+{\footnotesize\ttfamily int client\+\_\+sendall (\begin{DoxyParamCaption}\item[{int}]{sd,  }\item[{char $\ast$}]{data,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a7688d439c90eb01a3480db0f89d2cc01}\label{client_8c_a7688d439c90eb01a3480db0f89d2cc01}} 
+\index{client.\+c@{client.\+c}!client\+\_\+sign@{client\+\_\+sign}}
+\index{client\+\_\+sign@{client\+\_\+sign}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+sign()}{client\_sign()}}
+{\footnotesize\ttfamily void client\+\_\+sign (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{face,  }\item[{const char $\ast$}]{text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_aa0b8370ec510034dd30751a7de33edca}\label{client_8c_aa0b8370ec510034dd30751a7de33edca}} 
+\index{client.\+c@{client.\+c}!client\+\_\+start@{client\+\_\+start}}
+\index{client\+\_\+start@{client\+\_\+start}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+start()}{client\_start()}}
+{\footnotesize\ttfamily void client\+\_\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_ab1ad08ffad20c886c71a0f57cb4e56bf}\label{client_8c_ab1ad08ffad20c886c71a0f57cb4e56bf}} 
+\index{client.\+c@{client.\+c}!client\+\_\+stop@{client\+\_\+stop}}
+\index{client\+\_\+stop@{client\+\_\+stop}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+stop()}{client\_stop()}}
+{\footnotesize\ttfamily void client\+\_\+stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_aead7e376b121af80bc94eca71d1ca4ec}\label{client_8c_aead7e376b121af80bc94eca71d1ca4ec}} 
+\index{client.\+c@{client.\+c}!client\+\_\+talk@{client\+\_\+talk}}
+\index{client\+\_\+talk@{client\+\_\+talk}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+talk()}{client\_talk()}}
+{\footnotesize\ttfamily void client\+\_\+talk (\begin{DoxyParamCaption}\item[{const char $\ast$}]{text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a588876f19dc7a8519f4693a8458d94d1}\label{client_8c_a588876f19dc7a8519f4693a8458d94d1}} 
+\index{client.\+c@{client.\+c}!client\+\_\+version@{client\+\_\+version}}
+\index{client\+\_\+version@{client\+\_\+version}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{client\+\_\+version()}{client\_version()}}
+{\footnotesize\ttfamily void client\+\_\+version (\begin{DoxyParamCaption}\item[{int}]{version }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_abb798e3677ffc402f49ab6c4138378d8}\label{client_8c_abb798e3677ffc402f49ab6c4138378d8}} 
+\index{client.\+c@{client.\+c}!get\+\_\+client\+\_\+enabled@{get\+\_\+client\+\_\+enabled}}
+\index{get\+\_\+client\+\_\+enabled@{get\+\_\+client\+\_\+enabled}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+client\+\_\+enabled()}{get\_client\_enabled()}}
+{\footnotesize\ttfamily int get\+\_\+client\+\_\+enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{client_8c_a922af254b68a706c1b204a97cba3ccbf}\label{client_8c_a922af254b68a706c1b204a97cba3ccbf}} 
+\index{client.\+c@{client.\+c}!recv\+\_\+worker@{recv\+\_\+worker}}
+\index{recv\+\_\+worker@{recv\+\_\+worker}!client.\+c@{client.\+c}}
+\subsubsection{\texorpdfstring{recv\+\_\+worker()}{recv\_worker()}}
+{\footnotesize\ttfamily int recv\+\_\+worker (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+

@@ -1,0 +1,79 @@
+\hypertarget{sign_8h}{}\section{sign.\+h File Reference}
+\label{sign_8h}\index{sign.\+h@{sign.\+h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structSign}{Sign}
+\item 
+struct \hyperlink{structSignList}{Sign\+List}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{sign_8h_a710dbda73a9300c41fa70abbc375b912}{M\+A\+X\+\_\+\+S\+I\+G\+N\+\_\+\+L\+E\+N\+G\+TH}~64
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{sign_8h_a6ec34964157462244e401d16e07ddc4e}{sign\+\_\+list\+\_\+alloc} (\hyperlink{structSignList}{Sign\+List} $\ast$list, int capacity)
+\item 
+void \hyperlink{sign_8h_a73e97d25bafe85b24aa63050cd4763c7}{sign\+\_\+list\+\_\+free} (\hyperlink{structSignList}{Sign\+List} $\ast$list)
+\item 
+void \hyperlink{sign_8h_a637236c63ead3d87890a7caf28c956c0}{sign\+\_\+list\+\_\+grow} (\hyperlink{structSignList}{Sign\+List} $\ast$list)
+\item 
+void \hyperlink{sign_8h_aae114a42cacb505071f226ec3a4c39c7}{sign\+\_\+list\+\_\+add} (\hyperlink{structSignList}{Sign\+List} $\ast$list, int x, int y, int z, int face, const char $\ast$text)
+\item 
+int \hyperlink{sign_8h_a27610f7da6a948fcc73b3dd424dbf3d6}{sign\+\_\+list\+\_\+remove} (\hyperlink{structSignList}{Sign\+List} $\ast$list, int x, int y, int z, int face)
+\item 
+int \hyperlink{sign_8h_a78eb1832d934d3bd41dad63fd17de6f3}{sign\+\_\+list\+\_\+remove\+\_\+all} (\hyperlink{structSignList}{Sign\+List} $\ast$list, int x, int y, int z)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sign_8h_a710dbda73a9300c41fa70abbc375b912}\label{sign_8h_a710dbda73a9300c41fa70abbc375b912}} 
+\index{sign.\+h@{sign.\+h}!M\+A\+X\+\_\+\+S\+I\+G\+N\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+S\+I\+G\+N\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+S\+I\+G\+N\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+S\+I\+G\+N\+\_\+\+L\+E\+N\+G\+TH}!sign.\+h@{sign.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+I\+G\+N\+\_\+\+L\+E\+N\+G\+TH}{MAX\_SIGN\_LENGTH}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+I\+G\+N\+\_\+\+L\+E\+N\+G\+TH~64}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sign_8h_aae114a42cacb505071f226ec3a4c39c7}\label{sign_8h_aae114a42cacb505071f226ec3a4c39c7}} 
+\index{sign.\+h@{sign.\+h}!sign\+\_\+list\+\_\+add@{sign\+\_\+list\+\_\+add}}
+\index{sign\+\_\+list\+\_\+add@{sign\+\_\+list\+\_\+add}!sign.\+h@{sign.\+h}}
+\subsubsection{\texorpdfstring{sign\+\_\+list\+\_\+add()}{sign\_list\_add()}}
+{\footnotesize\ttfamily void sign\+\_\+list\+\_\+add (\begin{DoxyParamCaption}\item[{\hyperlink{structSignList}{Sign\+List} $\ast$}]{list,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{face,  }\item[{const char $\ast$}]{text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sign_8h_a6ec34964157462244e401d16e07ddc4e}\label{sign_8h_a6ec34964157462244e401d16e07ddc4e}} 
+\index{sign.\+h@{sign.\+h}!sign\+\_\+list\+\_\+alloc@{sign\+\_\+list\+\_\+alloc}}
+\index{sign\+\_\+list\+\_\+alloc@{sign\+\_\+list\+\_\+alloc}!sign.\+h@{sign.\+h}}
+\subsubsection{\texorpdfstring{sign\+\_\+list\+\_\+alloc()}{sign\_list\_alloc()}}
+{\footnotesize\ttfamily void sign\+\_\+list\+\_\+alloc (\begin{DoxyParamCaption}\item[{\hyperlink{structSignList}{Sign\+List} $\ast$}]{list,  }\item[{int}]{capacity }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sign_8h_a73e97d25bafe85b24aa63050cd4763c7}\label{sign_8h_a73e97d25bafe85b24aa63050cd4763c7}} 
+\index{sign.\+h@{sign.\+h}!sign\+\_\+list\+\_\+free@{sign\+\_\+list\+\_\+free}}
+\index{sign\+\_\+list\+\_\+free@{sign\+\_\+list\+\_\+free}!sign.\+h@{sign.\+h}}
+\subsubsection{\texorpdfstring{sign\+\_\+list\+\_\+free()}{sign\_list\_free()}}
+{\footnotesize\ttfamily void sign\+\_\+list\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{structSignList}{Sign\+List} $\ast$}]{list }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sign_8h_a637236c63ead3d87890a7caf28c956c0}\label{sign_8h_a637236c63ead3d87890a7caf28c956c0}} 
+\index{sign.\+h@{sign.\+h}!sign\+\_\+list\+\_\+grow@{sign\+\_\+list\+\_\+grow}}
+\index{sign\+\_\+list\+\_\+grow@{sign\+\_\+list\+\_\+grow}!sign.\+h@{sign.\+h}}
+\subsubsection{\texorpdfstring{sign\+\_\+list\+\_\+grow()}{sign\_list\_grow()}}
+{\footnotesize\ttfamily void sign\+\_\+list\+\_\+grow (\begin{DoxyParamCaption}\item[{\hyperlink{structSignList}{Sign\+List} $\ast$}]{list }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sign_8h_a27610f7da6a948fcc73b3dd424dbf3d6}\label{sign_8h_a27610f7da6a948fcc73b3dd424dbf3d6}} 
+\index{sign.\+h@{sign.\+h}!sign\+\_\+list\+\_\+remove@{sign\+\_\+list\+\_\+remove}}
+\index{sign\+\_\+list\+\_\+remove@{sign\+\_\+list\+\_\+remove}!sign.\+h@{sign.\+h}}
+\subsubsection{\texorpdfstring{sign\+\_\+list\+\_\+remove()}{sign\_list\_remove()}}
+{\footnotesize\ttfamily int sign\+\_\+list\+\_\+remove (\begin{DoxyParamCaption}\item[{\hyperlink{structSignList}{Sign\+List} $\ast$}]{list,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{face }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sign_8h_a78eb1832d934d3bd41dad63fd17de6f3}\label{sign_8h_a78eb1832d934d3bd41dad63fd17de6f3}} 
+\index{sign.\+h@{sign.\+h}!sign\+\_\+list\+\_\+remove\+\_\+all@{sign\+\_\+list\+\_\+remove\+\_\+all}}
+\index{sign\+\_\+list\+\_\+remove\+\_\+all@{sign\+\_\+list\+\_\+remove\+\_\+all}!sign.\+h@{sign.\+h}}
+\subsubsection{\texorpdfstring{sign\+\_\+list\+\_\+remove\+\_\+all()}{sign\_list\_remove\_all()}}
+{\footnotesize\ttfamily int sign\+\_\+list\+\_\+remove\+\_\+all (\begin{DoxyParamCaption}\item[{\hyperlink{structSignList}{Sign\+List} $\ast$}]{list,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z }\end{DoxyParamCaption})}
+

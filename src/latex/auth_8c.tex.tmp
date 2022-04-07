@@ -1,0 +1,53 @@
+\hypertarget{auth_8c}{}\section{auth.\+c File Reference}
+\label{auth_8c}\index{auth.\+c@{auth.\+c}}
+{\ttfamily \#include $<$curl/curl.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}auth.\+h\char`\"{}}\newline
+Include dependency graph for auth.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{auth_8c_a8ed8ab8bedf1e734d73d9411ff6137eb}{M\+A\+X\+\_\+\+P\+O\+S\+T\+\_\+\+L\+E\+N\+G\+TH}~1024
+\item 
+\#define \hyperlink{auth_8c_ac0d0e3d7f96a047b0a530d0f5b4b36fb}{M\+A\+X\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N\+G\+TH}~1024
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \hyperlink{auth_8c_a0100ee31782b24826f9799c16987d01d}{write\+\_\+function} (char $\ast$data, size\+\_\+t size, size\+\_\+t count, void $\ast$arg)
+\item 
+int \hyperlink{auth_8c_a5906ca1274eeaec74f635677baebe2cc}{get\+\_\+access\+\_\+token} (char $\ast$result, int length, char $\ast$username, char $\ast$identity\+\_\+token)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{auth_8c_a8ed8ab8bedf1e734d73d9411ff6137eb}\label{auth_8c_a8ed8ab8bedf1e734d73d9411ff6137eb}} 
+\index{auth.\+c@{auth.\+c}!M\+A\+X\+\_\+\+P\+O\+S\+T\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+P\+O\+S\+T\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+P\+O\+S\+T\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+P\+O\+S\+T\+\_\+\+L\+E\+N\+G\+TH}!auth.\+c@{auth.\+c}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+P\+O\+S\+T\+\_\+\+L\+E\+N\+G\+TH}{MAX\_POST\_LENGTH}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+P\+O\+S\+T\+\_\+\+L\+E\+N\+G\+TH~1024}
+
+\mbox{\Hypertarget{auth_8c_ac0d0e3d7f96a047b0a530d0f5b4b36fb}\label{auth_8c_ac0d0e3d7f96a047b0a530d0f5b4b36fb}} 
+\index{auth.\+c@{auth.\+c}!M\+A\+X\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N\+G\+TH}!auth.\+c@{auth.\+c}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N\+G\+TH}{MAX\_RESPONSE\_LENGTH}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+L\+E\+N\+G\+TH~1024}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{auth_8c_a5906ca1274eeaec74f635677baebe2cc}\label{auth_8c_a5906ca1274eeaec74f635677baebe2cc}} 
+\index{auth.\+c@{auth.\+c}!get\+\_\+access\+\_\+token@{get\+\_\+access\+\_\+token}}
+\index{get\+\_\+access\+\_\+token@{get\+\_\+access\+\_\+token}!auth.\+c@{auth.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+access\+\_\+token()}{get\_access\_token()}}
+{\footnotesize\ttfamily int get\+\_\+access\+\_\+token (\begin{DoxyParamCaption}\item[{char $\ast$}]{result,  }\item[{int}]{length,  }\item[{char $\ast$}]{username,  }\item[{char $\ast$}]{identity\+\_\+token }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{auth_8c_a0100ee31782b24826f9799c16987d01d}\label{auth_8c_a0100ee31782b24826f9799c16987d01d}} 
+\index{auth.\+c@{auth.\+c}!write\+\_\+function@{write\+\_\+function}}
+\index{write\+\_\+function@{write\+\_\+function}!auth.\+c@{auth.\+c}}
+\subsubsection{\texorpdfstring{write\+\_\+function()}{write\_function()}}
+{\footnotesize\ttfamily size\+\_\+t write\+\_\+function (\begin{DoxyParamCaption}\item[{char $\ast$}]{data,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{count,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+

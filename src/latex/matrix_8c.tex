@@ -1,0 +1,126 @@
+\hypertarget{matrix_8c}{}\section{matrix.\+c File Reference}
+\label{matrix_8c}\index{matrix.\+c@{matrix.\+c}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}matrix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+Include dependency graph for matrix.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{matrix_8c_a096915415d411e8c596255885fe89be1}{normalize} (float $\ast$x, float $\ast$y, float $\ast$z)
+\item 
+void \hyperlink{matrix_8c_afb84227ef7869d383478b67e26db2462}{mat\+\_\+identity} (float $\ast$matrix)
+\item 
+void \hyperlink{matrix_8c_a60d161b7a566b80038381c756373bd86}{mat\+\_\+translate} (float $\ast$matrix, float dx, float dy, float dz)
+\item 
+void \hyperlink{matrix_8c_a35bd6ed2032c06130e4bacee7fd61065}{mat\+\_\+rotate} (float $\ast$matrix, float x, float y, float z, float angle)
+\item 
+void \hyperlink{matrix_8c_af9cba09c0e2411573567b0cd009a6497}{mat\+\_\+vec\+\_\+multiply} (float $\ast$vector, float $\ast$a, float $\ast$b)
+\item 
+void \hyperlink{matrix_8c_aecbb7f0ede52ab3c4b3d96856ca03729}{mat\+\_\+multiply} (float $\ast$matrix, float $\ast$a, float $\ast$b)
+\item 
+void \hyperlink{matrix_8c_a08ac4391a0f909be8ff3be24add36de9}{mat\+\_\+apply} (float $\ast$data, float $\ast$matrix, int count, int offset, int stride)
+\item 
+void \hyperlink{matrix_8c_a5a468348d5e7d5c1577c0169a5caa729}{frustum\+\_\+planes} (float planes\mbox{[}6\mbox{]}\mbox{[}4\mbox{]}, int radius, float $\ast$matrix)
+\item 
+void \hyperlink{matrix_8c_aacfdedd36f30b553d089fb864c513c3c}{mat\+\_\+frustum} (float $\ast$matrix, float left, float right, float bottom, float top, float znear, float zfar)
+\item 
+void \hyperlink{matrix_8c_afcbfefff8b7de2ee193a5e8565b367e1}{mat\+\_\+perspective} (float $\ast$matrix, float fov, float aspect, float znear, float zfar)
+\item 
+void \hyperlink{matrix_8c_a1d5890d70fd9c40ed53aa27a9811572a}{mat\+\_\+ortho} (float $\ast$matrix, float left, float right, float bottom, float top, float near, float far)
+\item 
+void \hyperlink{matrix_8c_a5e1425d81e31dc21b5015b1cfbe2c1e2}{set\+\_\+matrix\+\_\+2d} (float $\ast$matrix, int width, int height)
+\item 
+void \hyperlink{matrix_8c_a4b924b6286bd77a90a0f4b685421ba8c}{set\+\_\+matrix\+\_\+3d} (float $\ast$matrix, int width, int height, float x, float y, float z, float rx, float ry, float fov, int ortho, int radius)
+\item 
+void \hyperlink{matrix_8c_a8fd3bdaeea6a8bc0bf64a09b689d7662}{set\+\_\+matrix\+\_\+item} (float $\ast$matrix, int width, int height, int scale)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{matrix_8c_a5a468348d5e7d5c1577c0169a5caa729}\label{matrix_8c_a5a468348d5e7d5c1577c0169a5caa729}} 
+\index{matrix.\+c@{matrix.\+c}!frustum\+\_\+planes@{frustum\+\_\+planes}}
+\index{frustum\+\_\+planes@{frustum\+\_\+planes}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{frustum\+\_\+planes()}{frustum\_planes()}}
+{\footnotesize\ttfamily void frustum\+\_\+planes (\begin{DoxyParamCaption}\item[{float}]{planes\mbox{[}6\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{radius,  }\item[{float $\ast$}]{matrix }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a08ac4391a0f909be8ff3be24add36de9}\label{matrix_8c_a08ac4391a0f909be8ff3be24add36de9}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+apply@{mat\+\_\+apply}}
+\index{mat\+\_\+apply@{mat\+\_\+apply}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+apply()}{mat\_apply()}}
+{\footnotesize\ttfamily void mat\+\_\+apply (\begin{DoxyParamCaption}\item[{float $\ast$}]{data,  }\item[{float $\ast$}]{matrix,  }\item[{int}]{count,  }\item[{int}]{offset,  }\item[{int}]{stride }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_aacfdedd36f30b553d089fb864c513c3c}\label{matrix_8c_aacfdedd36f30b553d089fb864c513c3c}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+frustum@{mat\+\_\+frustum}}
+\index{mat\+\_\+frustum@{mat\+\_\+frustum}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+frustum()}{mat\_frustum()}}
+{\footnotesize\ttfamily void mat\+\_\+frustum (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{float}]{left,  }\item[{float}]{right,  }\item[{float}]{bottom,  }\item[{float}]{top,  }\item[{float}]{znear,  }\item[{float}]{zfar }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_afb84227ef7869d383478b67e26db2462}\label{matrix_8c_afb84227ef7869d383478b67e26db2462}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+identity@{mat\+\_\+identity}}
+\index{mat\+\_\+identity@{mat\+\_\+identity}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+identity()}{mat\_identity()}}
+{\footnotesize\ttfamily void mat\+\_\+identity (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_aecbb7f0ede52ab3c4b3d96856ca03729}\label{matrix_8c_aecbb7f0ede52ab3c4b3d96856ca03729}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+multiply@{mat\+\_\+multiply}}
+\index{mat\+\_\+multiply@{mat\+\_\+multiply}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+multiply()}{mat\_multiply()}}
+{\footnotesize\ttfamily void mat\+\_\+multiply (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{float $\ast$}]{a,  }\item[{float $\ast$}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a1d5890d70fd9c40ed53aa27a9811572a}\label{matrix_8c_a1d5890d70fd9c40ed53aa27a9811572a}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+ortho@{mat\+\_\+ortho}}
+\index{mat\+\_\+ortho@{mat\+\_\+ortho}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+ortho()}{mat\_ortho()}}
+{\footnotesize\ttfamily void mat\+\_\+ortho (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{float}]{left,  }\item[{float}]{right,  }\item[{float}]{bottom,  }\item[{float}]{top,  }\item[{float}]{near,  }\item[{float}]{far }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_afcbfefff8b7de2ee193a5e8565b367e1}\label{matrix_8c_afcbfefff8b7de2ee193a5e8565b367e1}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+perspective@{mat\+\_\+perspective}}
+\index{mat\+\_\+perspective@{mat\+\_\+perspective}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+perspective()}{mat\_perspective()}}
+{\footnotesize\ttfamily void mat\+\_\+perspective (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{float}]{fov,  }\item[{float}]{aspect,  }\item[{float}]{znear,  }\item[{float}]{zfar }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a35bd6ed2032c06130e4bacee7fd61065}\label{matrix_8c_a35bd6ed2032c06130e4bacee7fd61065}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+rotate@{mat\+\_\+rotate}}
+\index{mat\+\_\+rotate@{mat\+\_\+rotate}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+rotate()}{mat\_rotate()}}
+{\footnotesize\ttfamily void mat\+\_\+rotate (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{angle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a60d161b7a566b80038381c756373bd86}\label{matrix_8c_a60d161b7a566b80038381c756373bd86}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+translate@{mat\+\_\+translate}}
+\index{mat\+\_\+translate@{mat\+\_\+translate}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+translate()}{mat\_translate()}}
+{\footnotesize\ttfamily void mat\+\_\+translate (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{float}]{dx,  }\item[{float}]{dy,  }\item[{float}]{dz }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_af9cba09c0e2411573567b0cd009a6497}\label{matrix_8c_af9cba09c0e2411573567b0cd009a6497}} 
+\index{matrix.\+c@{matrix.\+c}!mat\+\_\+vec\+\_\+multiply@{mat\+\_\+vec\+\_\+multiply}}
+\index{mat\+\_\+vec\+\_\+multiply@{mat\+\_\+vec\+\_\+multiply}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{mat\+\_\+vec\+\_\+multiply()}{mat\_vec\_multiply()}}
+{\footnotesize\ttfamily void mat\+\_\+vec\+\_\+multiply (\begin{DoxyParamCaption}\item[{float $\ast$}]{vector,  }\item[{float $\ast$}]{a,  }\item[{float $\ast$}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a096915415d411e8c596255885fe89be1}\label{matrix_8c_a096915415d411e8c596255885fe89be1}} 
+\index{matrix.\+c@{matrix.\+c}!normalize@{normalize}}
+\index{normalize@{normalize}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily void normalize (\begin{DoxyParamCaption}\item[{float $\ast$}]{x,  }\item[{float $\ast$}]{y,  }\item[{float $\ast$}]{z }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a5e1425d81e31dc21b5015b1cfbe2c1e2}\label{matrix_8c_a5e1425d81e31dc21b5015b1cfbe2c1e2}} 
+\index{matrix.\+c@{matrix.\+c}!set\+\_\+matrix\+\_\+2d@{set\+\_\+matrix\+\_\+2d}}
+\index{set\+\_\+matrix\+\_\+2d@{set\+\_\+matrix\+\_\+2d}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{set\+\_\+matrix\+\_\+2d()}{set\_matrix\_2d()}}
+{\footnotesize\ttfamily void set\+\_\+matrix\+\_\+2d (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a4b924b6286bd77a90a0f4b685421ba8c}\label{matrix_8c_a4b924b6286bd77a90a0f4b685421ba8c}} 
+\index{matrix.\+c@{matrix.\+c}!set\+\_\+matrix\+\_\+3d@{set\+\_\+matrix\+\_\+3d}}
+\index{set\+\_\+matrix\+\_\+3d@{set\+\_\+matrix\+\_\+3d}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{set\+\_\+matrix\+\_\+3d()}{set\_matrix\_3d()}}
+{\footnotesize\ttfamily void set\+\_\+matrix\+\_\+3d (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{rx,  }\item[{float}]{ry,  }\item[{float}]{fov,  }\item[{int}]{ortho,  }\item[{int}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matrix_8c_a8fd3bdaeea6a8bc0bf64a09b689d7662}\label{matrix_8c_a8fd3bdaeea6a8bc0bf64a09b689d7662}} 
+\index{matrix.\+c@{matrix.\+c}!set\+\_\+matrix\+\_\+item@{set\+\_\+matrix\+\_\+item}}
+\index{set\+\_\+matrix\+\_\+item@{set\+\_\+matrix\+\_\+item}!matrix.\+c@{matrix.\+c}}
+\subsubsection{\texorpdfstring{set\+\_\+matrix\+\_\+item()}{set\_matrix\_item()}}
+{\footnotesize\ttfamily void set\+\_\+matrix\+\_\+item (\begin{DoxyParamCaption}\item[{float $\ast$}]{matrix,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{int}]{scale }\end{DoxyParamCaption})}
+

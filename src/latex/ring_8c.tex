@@ -1,0 +1,122 @@
+\hypertarget{ring_8c}{}\section{ring.\+c File Reference}
+\label{ring_8c}\index{ring.\+c@{ring.\+c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ring.\+h\char`\"{}}\newline
+Include dependency graph for ring.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ring_8c_ad4cc1655953e5d466e2af18d3964b47a}{ring\+\_\+alloc} (\hyperlink{structRing}{Ring} $\ast$ring, int capacity)
+\item 
+void \hyperlink{ring_8c_ac118febd8ec65f7585e894e5ca969937}{ring\+\_\+free} (\hyperlink{structRing}{Ring} $\ast$ring)
+\item 
+int \hyperlink{ring_8c_a83a32c4d16f4e3328527b0d29322ed9b}{ring\+\_\+empty} (\hyperlink{structRing}{Ring} $\ast$ring)
+\item 
+int \hyperlink{ring_8c_adac33570346369d728076bbe591691e8}{ring\+\_\+full} (\hyperlink{structRing}{Ring} $\ast$ring)
+\item 
+int \hyperlink{ring_8c_a835e6cd0d6cb90357b672fab9f652fb3}{ring\+\_\+size} (\hyperlink{structRing}{Ring} $\ast$ring)
+\item 
+void \hyperlink{ring_8c_af99075f7c12d105820d3c3f20eb3d5d4}{ring\+\_\+grow} (\hyperlink{structRing}{Ring} $\ast$ring)
+\item 
+void \hyperlink{ring_8c_a379859f8ee53d4fb3c016de36dd14f22}{ring\+\_\+put} (\hyperlink{structRing}{Ring} $\ast$ring, \hyperlink{structRingEntry}{Ring\+Entry} $\ast$entry)
+\item 
+void \hyperlink{ring_8c_ab1fa391df9733df1b58827240e99954e}{ring\+\_\+put\+\_\+block} (\hyperlink{structRing}{Ring} $\ast$ring, int p, int q, int x, int y, int z, int w)
+\item 
+void \hyperlink{ring_8c_a2a157adc61230a07c4f0acb01ef03d85}{ring\+\_\+put\+\_\+light} (\hyperlink{structRing}{Ring} $\ast$ring, int p, int q, int x, int y, int z, int w)
+\item 
+void \hyperlink{ring_8c_a673500aea8aa32ee2a49e38cc1613ca6}{ring\+\_\+put\+\_\+key} (\hyperlink{structRing}{Ring} $\ast$ring, int p, int q, int key)
+\item 
+void \hyperlink{ring_8c_ab7a367af51dacbcd3c9ffb88fbd8c1a0}{ring\+\_\+put\+\_\+commit} (\hyperlink{structRing}{Ring} $\ast$ring)
+\item 
+void \hyperlink{ring_8c_a0a87dd1378715ffd2977242d69d42686}{ring\+\_\+put\+\_\+exit} (\hyperlink{structRing}{Ring} $\ast$ring)
+\item 
+int \hyperlink{ring_8c_a25d2d3f13927082392e31f9cce8458cc}{ring\+\_\+get} (\hyperlink{structRing}{Ring} $\ast$ring, \hyperlink{structRingEntry}{Ring\+Entry} $\ast$entry)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ring_8c_ad4cc1655953e5d466e2af18d3964b47a}\label{ring_8c_ad4cc1655953e5d466e2af18d3964b47a}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+alloc@{ring\+\_\+alloc}}
+\index{ring\+\_\+alloc@{ring\+\_\+alloc}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+alloc()}{ring\_alloc()}}
+{\footnotesize\ttfamily void ring\+\_\+alloc (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring,  }\item[{int}]{capacity }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_a83a32c4d16f4e3328527b0d29322ed9b}\label{ring_8c_a83a32c4d16f4e3328527b0d29322ed9b}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+empty@{ring\+\_\+empty}}
+\index{ring\+\_\+empty@{ring\+\_\+empty}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+empty()}{ring\_empty()}}
+{\footnotesize\ttfamily int ring\+\_\+empty (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_ac118febd8ec65f7585e894e5ca969937}\label{ring_8c_ac118febd8ec65f7585e894e5ca969937}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+free@{ring\+\_\+free}}
+\index{ring\+\_\+free@{ring\+\_\+free}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+free()}{ring\_free()}}
+{\footnotesize\ttfamily void ring\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_adac33570346369d728076bbe591691e8}\label{ring_8c_adac33570346369d728076bbe591691e8}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+full@{ring\+\_\+full}}
+\index{ring\+\_\+full@{ring\+\_\+full}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+full()}{ring\_full()}}
+{\footnotesize\ttfamily int ring\+\_\+full (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_a25d2d3f13927082392e31f9cce8458cc}\label{ring_8c_a25d2d3f13927082392e31f9cce8458cc}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+get@{ring\+\_\+get}}
+\index{ring\+\_\+get@{ring\+\_\+get}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+get()}{ring\_get()}}
+{\footnotesize\ttfamily int ring\+\_\+get (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring,  }\item[{\hyperlink{structRingEntry}{Ring\+Entry} $\ast$}]{entry }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_af99075f7c12d105820d3c3f20eb3d5d4}\label{ring_8c_af99075f7c12d105820d3c3f20eb3d5d4}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+grow@{ring\+\_\+grow}}
+\index{ring\+\_\+grow@{ring\+\_\+grow}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+grow()}{ring\_grow()}}
+{\footnotesize\ttfamily void ring\+\_\+grow (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring }\end{DoxyParamCaption})}
+
+This is the ring\+\_\+grow function 
+\begin{DoxyParams}{Parameters}
+{\em ring} & the ring \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ring_8c_a379859f8ee53d4fb3c016de36dd14f22}\label{ring_8c_a379859f8ee53d4fb3c016de36dd14f22}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+put@{ring\+\_\+put}}
+\index{ring\+\_\+put@{ring\+\_\+put}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+put()}{ring\_put()}}
+{\footnotesize\ttfamily void ring\+\_\+put (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring,  }\item[{\hyperlink{structRingEntry}{Ring\+Entry} $\ast$}]{entry }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_ab1fa391df9733df1b58827240e99954e}\label{ring_8c_ab1fa391df9733df1b58827240e99954e}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+put\+\_\+block@{ring\+\_\+put\+\_\+block}}
+\index{ring\+\_\+put\+\_\+block@{ring\+\_\+put\+\_\+block}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+put\+\_\+block()}{ring\_put\_block()}}
+{\footnotesize\ttfamily void ring\+\_\+put\+\_\+block (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring,  }\item[{int}]{p,  }\item[{int}]{q,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{w }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_ab7a367af51dacbcd3c9ffb88fbd8c1a0}\label{ring_8c_ab7a367af51dacbcd3c9ffb88fbd8c1a0}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+put\+\_\+commit@{ring\+\_\+put\+\_\+commit}}
+\index{ring\+\_\+put\+\_\+commit@{ring\+\_\+put\+\_\+commit}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+put\+\_\+commit()}{ring\_put\_commit()}}
+{\footnotesize\ttfamily void ring\+\_\+put\+\_\+commit (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_a0a87dd1378715ffd2977242d69d42686}\label{ring_8c_a0a87dd1378715ffd2977242d69d42686}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+put\+\_\+exit@{ring\+\_\+put\+\_\+exit}}
+\index{ring\+\_\+put\+\_\+exit@{ring\+\_\+put\+\_\+exit}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+put\+\_\+exit()}{ring\_put\_exit()}}
+{\footnotesize\ttfamily void ring\+\_\+put\+\_\+exit (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_a673500aea8aa32ee2a49e38cc1613ca6}\label{ring_8c_a673500aea8aa32ee2a49e38cc1613ca6}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+put\+\_\+key@{ring\+\_\+put\+\_\+key}}
+\index{ring\+\_\+put\+\_\+key@{ring\+\_\+put\+\_\+key}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+put\+\_\+key()}{ring\_put\_key()}}
+{\footnotesize\ttfamily void ring\+\_\+put\+\_\+key (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring,  }\item[{int}]{p,  }\item[{int}]{q,  }\item[{int}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_a2a157adc61230a07c4f0acb01ef03d85}\label{ring_8c_a2a157adc61230a07c4f0acb01ef03d85}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+put\+\_\+light@{ring\+\_\+put\+\_\+light}}
+\index{ring\+\_\+put\+\_\+light@{ring\+\_\+put\+\_\+light}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+put\+\_\+light()}{ring\_put\_light()}}
+{\footnotesize\ttfamily void ring\+\_\+put\+\_\+light (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring,  }\item[{int}]{p,  }\item[{int}]{q,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{z,  }\item[{int}]{w }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ring_8c_a835e6cd0d6cb90357b672fab9f652fb3}\label{ring_8c_a835e6cd0d6cb90357b672fab9f652fb3}} 
+\index{ring.\+c@{ring.\+c}!ring\+\_\+size@{ring\+\_\+size}}
+\index{ring\+\_\+size@{ring\+\_\+size}!ring.\+c@{ring.\+c}}
+\subsubsection{\texorpdfstring{ring\+\_\+size()}{ring\_size()}}
+{\footnotesize\ttfamily int ring\+\_\+size (\begin{DoxyParamCaption}\item[{\hyperlink{structRing}{Ring} $\ast$}]{ring }\end{DoxyParamCaption})}
+
