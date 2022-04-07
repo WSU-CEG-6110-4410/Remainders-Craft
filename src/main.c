@@ -21,6 +21,8 @@
 #include "world.h"
 #include "input.h"
 #include "chunk.h"
+#include "block.h"
+#include "hit.h"
 
 #define MAX_CHUNKS 8192
 #define MAX_PLAYERS 128

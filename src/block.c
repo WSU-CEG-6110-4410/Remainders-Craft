@@ -4,6 +4,7 @@
 #include <math.h>
 #include "structs.h"
 #include "chunk.h"
+#include "item.h"
 
 void unset_sign(int x, int y, int z, Model *model)
 {
