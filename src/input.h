@@ -21,11 +21,6 @@ void on_scroll(GLFWwindow *window, double xdelta, double ydelta, Model *model);
 
 void on_char(GLFWwindow *window, unsigned int u, Model *model);
 
-void unset_sign_face(int x, int y, int z, int face, Model *model);
-
-void _set_sign(
-    int p, int q, int x, int y, int z, int face, const char *text, int dirty, Model *model);
-
 void add_message(const char *text, Model *model);
 
 void login(Model *model);
