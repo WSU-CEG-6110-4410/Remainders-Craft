@@ -16,6 +16,8 @@
 #define MAX_ADDR_LENGTH 256
 #define MAX_CHUNKS 8192
 
+/// [issue](https://github.com/WSU-CEG-6110-4410/Remainders-Craft/issues/8)
+/// These structs were derived from main.c. Further documentation is necessary.
 
 typedef struct
 {
