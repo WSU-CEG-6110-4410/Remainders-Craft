@@ -4,6 +4,13 @@
 #include "structs.h"
 #include "db.h"
 
+void unset_sign_face(int x, int y, int z, int face, Model *model);
+
+void _set_sign(
+    int p, int q, int x, int y, int z, int face, const char *text, int dirty, Model *model);
+
+void set_sign(int x, int y, int z, int face, const char *text, Model *model);
+
 void unset_sign(int x, int y, int z, Model *model);
 
 void set_light(int p, int q, int x, int y, int z, int w);

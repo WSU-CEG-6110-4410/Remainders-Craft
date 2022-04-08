@@ -238,54 +238,6 @@ void on_char(GLFWwindow *window, unsigned int u, Model *model)
         }
     }
 }
-void unset_sign_face(int x, int y, int z, int face, Model *model)
-{
-    int p = chunked(x);
-    int q = chunked(z);
-    Chunk *chunk = find_chunk(p, q, model);
-    if (chunk)
-    {
-        SignList *signs = &chunk->signs;
-        if (sign_list_remove(signs, x, y, z, face))
-        {
-            chunk->dirty = 1;
-            db_delete_sign(x, y, z, face);
-        }
-    }
-    else
-    {
-        db_delete_sign(x, y, z, face);
-    }
-}
-
-void _set_sign(
-    int p, int q, int x, int y, int z, int face, const char *text, int dirty, Model* model)
-{
-    if (strlen(text) == 0)
-    {
-        unset_sign_face(x, y, z, face, model);
-        return;
-    }
-    Chunk *chunk = find_chunk(p, q, model);
-    if (chunk)
-    {
-        SignList *signs = &chunk->signs;
-        sign_list_add(signs, x, y, z, face, text);
-        if (dirty)
-        {
-            chunk->dirty = 1;
-        }
-    }
-    db_insert_sign(p, q, x, y, z, face, text);
-}
-
-void set_sign(int x, int y, int z, int face, const char *text, Model *model)
-{
-    int p = chunked(x);
-    int q = chunked(z);
-    _set_sign(p, q, x, y, z, face, text, 1, model);
-    client_sign(x, y, z, face, text);
-}
 
 void add_message(const char *text, Model* model)
 {
