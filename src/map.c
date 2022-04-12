@@ -2,6 +2,9 @@
 #include <string.h>
 #include "map.h"
 
+/** @brief This is the source file for the map
+*/
+
 int hash_int(int key) {
     key = ~key + (key << 15);
     key = key ^ (key >> 12);
