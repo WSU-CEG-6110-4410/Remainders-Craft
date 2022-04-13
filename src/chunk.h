@@ -30,8 +30,20 @@ Chunk *find_chunk(int p, int q, Model *model);
 /// and the given coordinates.
 int chunk_distance(Chunk *chunk, int p, int q);
 
+/// This function determines whether a specified chunk
+/// should have light by comparing its surrounding chunks.
+///\param[in] chunk: The chunk which is being checked whether
+/// it should have light
+///\param[in] model: The current game instance which includes
+/// the other chunks in the game.
+///\param[out] int: 1 indicates the chunk should have light, 0
+/// indicates that it should not.
 int has_lights(Chunk *chunk);
 
+/// This function sets the dirty flag on a Chunk and
+/// sets the surrounding Chunks as dirty if it has light.
+///\param[in] chunk: The chunk to be set as dirty.
+///\param[in,out] model: The game instance containing all
+/// chunks. Surrounding chunks to "chunk" may be modified.
 void dirty_chunk(Chunk *chunk, Model *model);
-
 #endif
