@@ -64,7 +64,7 @@ void on_light(Model *model);
 void on_mouse_button(GLFWwindow *window, int button, int action, int mods, Model *model);
 
 /// Use this function to translate a scroll event. Should
-/// be used as a result of [glfwSetMouseButtonCallback](https://www.glfw.org/docs/3.3/group__input.html#ga571e45a030ae4061f746ed56cb76aede).
+/// be used as a result of [glfwSetScrollCallback](https://www.glfw.org/docs/3.3/group__input.html#ga571e45a030ae4061f746ed56cb76aede).
 ///\param[in] window: The openGL window object.
 ///\param[in] xdelta: The scroll offset along the x-axis.
 ///\param[in] ydelta: The scroll offset along the y-axis.
@@ -72,14 +72,43 @@ void on_mouse_button(GLFWwindow *window, int button, int action, int mods, Model
 /// Will be modified set item_index.
 void on_scroll(GLFWwindow *window, double xdelta, double ydelta, Model *model);
 
+/// Use this function to translate an input character. Should
+/// be used as a result of [glfwSetCharCallback](https://www.glfw.org/docs/3.3/group__input.html#gab25c4a220fd8f5717718dbc487828996).
+///\param[in] window: The openGL window object.
+///\param[in] u: The Unicode code point of the character.
+///\param[in,out] model: The current game instance.
+/// Will be modified write the typed chars to a buffer.
 void on_char(GLFWwindow *window, unsigned int u, Model *model);
 
+/// Use this function to add a message to the game's
+/// message logs.
+///\param[in] text: The message to be added.
+///\param[in,out] model: The current game instance which
+/// the message will be added to.
 void add_message(const char *text, Model *model);
 
-void login(Model *model);
+/// Use this function to login the db selected username
+/// to the server.
+void login();
 
+/// Use this function to parse a buffer as chat text, or as a
+/// game command.
+///\param[in] buffer: The buffer to be parsed.
+///\param[in] forward: Indicates whether the buffer is a command.
+///\param[in,out] model: Current game instance. Will be modified
+/// to record text or respond to a command.
 void parse_command(const char *buffer, int forward, Model *model);
 
+/// Use this function to translate key controls. Should
+/// be used as a result of [glfwSetKeyCallback](https://www.glfw.org/docs/3.3/group__input.html#ga1caf18159767e761185e49a3be019f8d).
+///\param[in] window: The openGL window object.
+///\param[in] key: The keyboard key that was pressed or released.
+///\param[in] scancode: The system-specific scancode of the key.
+///\param[in] action: GLFW_PRESS, GLFW_RELEASE or GLFW_REPEAT
+///\param[in] mods: Bit field describing which modifier keys 
+/// were held down.
+///\param[in,out] model: The current game instance. May be
+/// modified to respond to keyboard actions.
 void on_key(GLFWwindow *window, int key, int scancode, int action, int mods, Model *model);
 
 #endif
