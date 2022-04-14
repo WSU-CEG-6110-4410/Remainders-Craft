@@ -40,8 +40,9 @@ int chunk_distance(Chunk *chunk, int p, int q);
 /// indicates that it should not.
 int has_lights(Chunk *chunk);
 
-/// This function sets the dirty flag on a Chunk and
-/// sets the surrounding Chunks as dirty if it has light.
+/// Use this function to set the dirty flag for a Chunk, which
+/// indicates that the Chunck should stay rendered for the player.
+/// It will also set the surrounding Chunks as dirty if they have light.
 ///\param[in] chunk: The chunk to be set as dirty.
 ///\param[in,out] model: The game instance containing all
 /// chunks. Surrounding chunks to "chunk" may be modified.
