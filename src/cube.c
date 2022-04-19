@@ -4,6 +4,28 @@
 #include "matrix.h"
 #include "util.h"
 
+/**
+Generates the faces of the cubes
+\param[in] data: what will be used to populate the cube
+\param[in] ao: used to determine if the cube will be flipped
+\param[in] light: light that will display on the cube
+\param[in] left: the left side of the cube
+\param[in] right: the right side of the cube
+\param[in] top: the top side of the cube
+\param[in] bottom: the bottom side of the cube
+\param[in] front: the front side of the cube
+\param[in] back: the back side of the cube
+\param[in] wleft: left display tile
+\param[in] wright: right display tile
+\param[in] wtop: top display tile
+\param[in] wbottom: bottom display tile
+\param[in] wfront: front display tile
+\param[in] wback: back display tile
+\param[in] x: x coord of the cube
+\param[in] y: y coord of the cube
+\param[in] z: z coord of the cube
+\param[in] n: used to calculate the offset of axes
+*/
 void make_cube_faces(
     float *data, float ao[6][4], float light[6][4],
     int left, int right, int top, int bottom, int front, int back,
