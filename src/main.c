@@ -927,7 +927,7 @@ void load_chunk(WorkerItem *item)
     int q = item->q;
     Map *block_map = item->block_maps[1][1];
     Map *light_map = item->light_maps[1][1];
-    create_world(p, q, map_set_func, block_map);
+    create_world(p, q, map_set_func, block_map); //causes the clouds to spawn
     db_load_blocks(block_map, p, q);
     db_load_lights(light_map, p, q);
 }
@@ -1370,6 +1370,7 @@ void render_players(Attrib *attrib, Player *player)
     }
 }
 
+//this does nothing for the clouds
 void render_sky(Attrib *attrib, Player *player, GLuint buffer)
 {
     State *s = &player->state;
@@ -1378,10 +1379,10 @@ void render_sky(Attrib *attrib, Player *player, GLuint buffer)
         matrix, g->width, g->height,
         0, 0, 0, s->rx, s->ry, g->fov, 0, g->render_radius);
     glUseProgram(attrib->program);
-    glUniformMatrix4fv(attrib->matrix, 1, GL_FALSE, matrix);
-    glUniform1i(attrib->sampler, 2);
-    glUniform1f(attrib->timer, time_of_day());
-    draw_triangles_3d(attrib, buffer, 512 * 3);
+    glUniformMatrix4fv(attrib->matrix, 1, GL_FALSE, matrix); //sky is black
+    glUniform1i(attrib->sampler, 2); //sky gets werid ring
+    glUniform1f(attrib->timer, time_of_day()); //sky is black
+    draw_triangles_3d(attrib, buffer, 512 * 3); //sky is black
 }
 
 void render_wireframe(Attrib *attrib, Player *player)
@@ -1879,7 +1880,7 @@ int main(int argc, char **argv)
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    load_png_texture("textures/texture.png");
+    load_png_texture("../textures/texture.png");
 
     GLuint font;
     glGenTextures(1, &font);
@@ -1887,7 +1888,7 @@ int main(int argc, char **argv)
     glBindTexture(GL_TEXTURE_2D, font);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    load_png_texture("textures/font.png");
+    load_png_texture("../textures/font.png");
 
     GLuint sky;
     glGenTextures(1, &sky);
@@ -1897,7 +1898,7 @@ int main(int argc, char **argv)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    load_png_texture("textures/sky.png");
+    load_png_texture("../textures/sky.png");
 
     GLuint sign;
     glGenTextures(1, &sign);
@@ -1905,7 +1906,7 @@ int main(int argc, char **argv)
     glBindTexture(GL_TEXTURE_2D, sign);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    load_png_texture("textures/sign.png");
+    load_png_texture("../textures/sign.png");
 
     // LOAD SHADERS //
     Attrib block_attrib = {0};
@@ -1915,7 +1916,7 @@ int main(int argc, char **argv)
     GLuint program;
 
     program = load_program(
-        "shaders/block_vertex.glsl", "shaders/block_fragment.glsl");
+        "../shaders/block_vertex.glsl", "../shaders/block_fragment.glsl");
     block_attrib.program = program;
     block_attrib.position = glGetAttribLocation(program, "position");
     block_attrib.normal = glGetAttribLocation(program, "normal");
@@ -1930,13 +1931,13 @@ int main(int argc, char **argv)
     block_attrib.timer = glGetUniformLocation(program, "timer");
 
     program = load_program(
-        "shaders/line_vertex.glsl", "shaders/line_fragment.glsl");
+        "../shaders/line_vertex.glsl", "../shaders/line_fragment.glsl");
     line_attrib.program = program;
     line_attrib.position = glGetAttribLocation(program, "position");
     line_attrib.matrix = glGetUniformLocation(program, "matrix");
 
     program = load_program(
-        "shaders/text_vertex.glsl", "shaders/text_fragment.glsl");
+        "../shaders/text_vertex.glsl", "../shaders/text_fragment.glsl");
     text_attrib.program = program;
     text_attrib.position = glGetAttribLocation(program, "position");
     text_attrib.uv = glGetAttribLocation(program, "uv");
@@ -1945,7 +1946,7 @@ int main(int argc, char **argv)
     text_attrib.extra1 = glGetUniformLocation(program, "is_sign");
 
     program = load_program(
-        "shaders/sky_vertex.glsl", "shaders/sky_fragment.glsl");
+        "../shaders/sky_vertex.glsl", "../shaders/sky_fragment.glsl");
     sky_attrib.program = program;
     sky_attrib.position = glGetAttribLocation(program, "position");
     sky_attrib.normal = glGetAttribLocation(program, "normal");
