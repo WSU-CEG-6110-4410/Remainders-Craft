@@ -4,6 +4,29 @@
 #include "matrix.h"
 #include "util.h"
 
+/**
+Generates the faces of the cubes
+\param[in] This method is compartimentalized to reduce coupling with make cube
+\param[in] data: what will be used to populate the cube
+\param[in] ao: used to determine if the cube will be flipped
+\param[in] light: light that will display on the cube
+\param[in] left: the left side of the cube
+\param[in] right: the right side of the cube
+\param[in] top: the top side of the cube
+\param[in] bottom: the bottom side of the cube
+\param[in] front: the front side of the cube
+\param[in] back: the back side of the cube
+\param[in] wleft: left display tile
+\param[in] wright: right display tile
+\param[in] wtop: top display tile
+\param[in] wbottom: bottom display tile
+\param[in] wfront: front display tile
+\param[in] wback: back display tile
+\param[in] x: x coord of the cube
+\param[in] y: y coord of the cube
+\param[in] z: z coord of the cube
+\param[in] n: used to calculate the offset of axes
+*/
 void make_cube_faces(
     float *data, float ao[6][4], float light[6][4],
     int left, int right, int top, int bottom, int front, int back,
@@ -78,6 +101,30 @@ void make_cube_faces(
         }
     }
 }
+/**
+Generates the cubes
+\param[in] This method is what creates the cube itself which calls the faces
+\param[in] data: what will be used to populate the cube
+\param[in] ao: used to determine if the cube will be flipped
+\param[in] light: light that will display on the cube
+\param[in] left: the left side of the cube
+\param[in] right: the right side of the cube
+\param[in] top: the top side of the cube
+\param[in] bottom: the bottom side of the cube
+\param[in] front: the front side of the cube
+\param[in] back: the back side of the cube
+\param[in] x: x coord of the cube
+\param[in] y: y coord of the cube
+\param[in] z: z coord of the cube
+\param[in] n: used to calculate the offset of axes
+\param[in] w: the display tile
+\param[in] wleft: left display tile
+\param[in] wright: right display tile
+\param[in] wtop: top display tile
+\param[in] wbottom: bottom display tile
+\param[in] wfront: front display tile
+\param[in] wback: back display tile
+*/
 
 void make_cube(
     float *data, float ao[6][4], float light[6][4],
@@ -96,6 +143,20 @@ void make_cube(
         wleft, wright, wtop, wbottom, wfront, wback,
         x, y, z, n);
 }
+
+/**
+Generates plants
+\param[in] This method is what creates plants
+\param[in] data: what will be used to populate the plants
+\param[in] ao: used to determine if the plant will be flipped
+\param[in] light: light that will display on the plant
+\param[in] x: x coord of the plant
+\param[in] y: y coord of the plant
+\param[in] z: z coord of the plant
+\param[in] n: used to calculate the offset of axes
+\param[in] w: the display tile
+\param[in] rotation: the rotation of the plant 
+*/
 
 void make_plant(
     float *data, float ao, float light,
@@ -157,6 +218,18 @@ void make_plant(
     mat_apply(data, ma, 24, 0, 10);
 }
 
+
+/**
+Generates the player
+\param[in] This method is what generates the player
+\param[in] data: what will be used to populate the player
+\param[in] x: x coord of the player
+\param[in] y: y coord of the player
+\param[in] z: z coord of the player
+\param[in] rx: the rotation of the player along the x plane 
+\param[in] ry: the rotation of the player along the y plane 
+*/
+
 void make_player(
     float *data,
     float x, float y, float z, float rx, float ry)
@@ -188,6 +261,18 @@ void make_player(
     mat_apply(data, ma, 36, 0, 10);
 }
 
+
+/**
+Generates the wireframe for the cube
+\param[in] This method is what creates the lines for the cube 'cubeframe'
+\param[in] data: what will be used to populate the cubeframe
+\param[in] x: x coord of the cubeframe
+\param[in] y: y coord of the cubeframe
+\param[in] z: z coord of the cubeframe
+\param[in] n: used to calculate the offset of axes
+*/
+
+
 void make_cube_wireframe(float *data, float x, float y, float z, float n) {
     static const float positions[8][3] = {
         {-1, -1, -1},
@@ -213,6 +298,18 @@ void make_cube_wireframe(float *data, float x, float y, float z, float n) {
     }
 }
 
+
+/**
+Generates the character
+\param[in] This method is what generates the character
+\param[in] data: what will be used to populate the character
+\param[in] x: x coord of the character
+\param[in] y: y coord of the character
+\param[in] n: used to calculate the offset of axes
+\param[in] m: the movement of the character
+\param[in] c: the initial char that is converted to a capital letter
+*/
+
 void make_character(
     float *data,
     float x, float y, float n, float m, char c)
@@ -237,6 +334,19 @@ void make_character(
     *(d++) = x - n; *(d++) = y + m;
     *(d++) = du + 0; *(d++) = dv + b;
 }
+
+
+/**
+Generates the 3d character
+\param[in] This method is what generates the 3d character
+\param[in] data: what will be used to populate the 3d character
+\param[in] x: x coord of the 3d character
+\param[in] y: y coord of the 3d character
+\param[in] z: z coord of the 3d character
+\param[in] n: used to calculate the offset of axes
+\param[in] face: the face of the 3d character
+\param[in] c: the initial char that is converted to a capital letter
+*/
 
 void make_character_3d(
     float *data, float x, float y, float z, float n, int face, char c)
@@ -297,6 +407,20 @@ void make_character_3d(
     }
 }
 
+/**
+Generates the information used to create a sphere
+\param[in] This method is what generates a sphere
+\param[in] data: what will be used to populate the sphere
+\param[in] r: radius of the sphere
+\param[in] detail: uesd to store the information about the sphere
+\param[in] a: area of the sphere
+\param[in] b: borders of the sphere
+\param[in] c: the initial char that is converted to a capital letter
+\param[in] ta: total area of the sphere
+\param[in] tb: total borders of the sphere
+\param[in] tc: the total of the sphere display tile calculations
+*/
+
 int _make_sphere(
     float *data, float r, int detail,
     float *a, float *b, float *c,
@@ -342,6 +466,15 @@ int _make_sphere(
         return total;
     }
 }
+
+
+/**
+Generates a sphere with information from int _make_sphere
+\param[in] This method is what generates a sphere
+\param[in] data: what will be used to populate the sphere
+\param[in] r: radius of the sphere
+\param[in] detail: uesd to store the information about the sphere
+*/
 
 void make_sphere(float *data, float r, int detail) {
     // detail, triangles, floats
