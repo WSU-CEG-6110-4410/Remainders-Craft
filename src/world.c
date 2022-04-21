@@ -2,6 +2,16 @@
 #include "noise.h"
 #include "world.h"
 
+/**
+Creates the initial settings for world generation.
+Each if statement creates the environmental features that are in each chunk.
+The x, y, and z's are used to determine shapes of the spawned objects using world_func.
+The fourth parameter for the func is for the color.
+@param p value used for the x size of the chunk
+@param q value used for the y size of the chunk
+@param world_func function used to generate environmental objects
+@param arg block map for world gen
+*/
 void create_world(int p, int q, world_func func, void *arg) {
     int pad = 1;
     for (int dx = -pad; dx < CHUNK_SIZE + pad; dx++) {

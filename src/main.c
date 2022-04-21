@@ -1938,8 +1938,7 @@ int main(int argc, char **argv)
 
     char *block_vertex_path = get_file_path("./shaders/", "block_vertex.glsl");
     char *block_fragment_path = get_file_path("./shaders/", "block_fragment.glsl");
-    program = load_program(
-        block_vertex_path, block_fragment_path);
+    program = load_program(block_vertex_path, block_fragment_path);
     free(block_vertex_path);
     free(block_fragment_path);
     block_attrib.program = program;
@@ -1957,8 +1956,7 @@ int main(int argc, char **argv)
 
     char *line_vertex_path = get_file_path("./shaders/", "line_vertex.glsl");
     char *line_fragment_path = get_file_path("./shaders/", "line_fragment.glsl");
-    program = load_program(
-        line_vertex_path, line_fragment_path);
+    program = load_program(line_vertex_path, line_fragment_path);
     free(line_vertex_path);
     free(line_fragment_path);
     line_attrib.program = program;
@@ -1967,8 +1965,7 @@ int main(int argc, char **argv)
 
     char *text_vertex_path = get_file_path("./shaders/", "text_vertex.glsl");
     char *text_fragment_path = get_file_path("./shaders/", "text_fragment.glsl");
-    program = load_program(
-        text_vertex_path, text_fragment_path);
+    program = load_program(text_vertex_path, text_fragment_path);
     free(text_vertex_path);
     free(text_fragment_path);
     text_attrib.program = program;
@@ -1980,8 +1977,7 @@ int main(int argc, char **argv)
 
     char *sky_vertex_path = get_file_path("./shaders/", "sky_vertex.glsl");
     char *sky_fragment_path = get_file_path("./shaders/", "sky_fragment.glsl");
-    program = load_program(
-        sky_vertex_path, sky_fragment_path);
+    program = load_program( sky_vertex_path, sky_fragment_path);
     free(sky_vertex_path);
     free(sky_fragment_path);
     sky_attrib.program = program;
@@ -2060,6 +2056,7 @@ int main(int argc, char **argv)
         GLuint sky_buffer = gen_sky_buffer();
 
         Player *me = g->players;
+		me->health = 100;
         State *s = &g->players->state;
         me->id = 0;
         me->name[0] = '\0';
@@ -2176,10 +2173,10 @@ int main(int argc, char **argv)
                 hour = hour ? hour : 12;
                 snprintf(
                     text_buffer, 1024,
-                    "(%d, %d) (%.2f, %.2f, %.2f) [%d, %d, %d] %d%cm %dfps",
+                    "(%d, %d) (%.2f, %.2f, %.2f) [%d, %d, %d] %d%cm %dfps Health: %d",
                     chunked(s->x), chunked(s->z), s->x, s->y, s->z,
                     g->player_count, g->chunk_count,
-                    face_count * 2, hour, am_pm, fps.fps);
+                    face_count * 2, hour, am_pm, fps.fps, player->health);
                 render_text(&text_attrib, ALIGN_LEFT, tx, ty, ts, text_buffer);
                 ty -= ts * 2;
             }

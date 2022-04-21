@@ -80,6 +80,7 @@ typedef struct
 {
     int id;
     char name[MAX_NAME_LENGTH];
+	int health;
     State state;
     State state1;
     State state2;
