@@ -23,6 +23,7 @@
 #include "chunk.h"
 #include "block.h"
 #include "hit.h"
+#include <unistd.h>
 
 #define MAX_CHUNKS 8192
 #define MAX_PLAYERS 128
@@ -1841,6 +1842,8 @@ int main(int argc, char **argv)
     curl_global_init(CURL_GLOBAL_DEFAULT);
     srand(time(NULL));
     rand();
+	char path[1024];
+	readlink("/proc/self/exe", path, 1024);
 
     // WINDOW INITIALIZATION //
     if (!glfwInit())
@@ -1879,7 +1882,7 @@ int main(int argc, char **argv)
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    load_png_texture("/home/user/Remainders-Craft/textures/texture.png");
+	load_png_texture(strcat(dirname(path), "/../textures/texture.png"));
 
     GLuint font;
     glGenTextures(1, &font);
@@ -1887,7 +1890,7 @@ int main(int argc, char **argv)
     glBindTexture(GL_TEXTURE_2D, font);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    load_png_texture("/home/user/Remainders-Craft/textures/font.png");
+    load_png_texture(strcat(dirname(path), "/../textures/font.png"));
 
     GLuint sky;
     glGenTextures(1, &sky);
@@ -1897,7 +1900,7 @@ int main(int argc, char **argv)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    load_png_texture("/home/user/Remainders-Craft/textures/sky.png");
+    load_png_texture(strcat(dirname(path), "/../textures/sky.png"));
 
     GLuint sign;
     glGenTextures(1, &sign);
@@ -1905,7 +1908,7 @@ int main(int argc, char **argv)
     glBindTexture(GL_TEXTURE_2D, sign);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    load_png_texture("/home/user/Remainders-Craft/textures/sign.png");
+    load_png_texture(strcat(dirname(path), "/../textures/sign.png"));
 
     // LOAD SHADERS //
     Attrib block_attrib = {0};
