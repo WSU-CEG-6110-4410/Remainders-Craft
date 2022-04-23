@@ -216,7 +216,7 @@ GLuint gen_text_buffer(float x, float y, float n, char *text)
 
 /**
 Used to draw chunks and items in the game world
-\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in,out] attrib: Attrib struct that contains information on what will be drawn.
 \param[in] buffer: Buffer that will be used for the drawing.
 \param[in] count: How many need to be drawn.
 */
@@ -241,7 +241,7 @@ void draw_triangles_3d_ao(Attrib *attrib, GLuint buffer, int count)
 
 /**
 Used to draw text that displays on signs in the world.
-\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in,out] attrib: Attrib struct that contains information on what will be drawn.
 \param[in] buffer: Buffer that will be used for the drawing.
 \param[in] count: How many need to be drawn.
 */
@@ -406,7 +406,7 @@ void draw_plant(Attrib *attrib, GLuint buffer)
 }
 
 /**
-Handles drawing all players that appear in the world.
+Handles drawing a player that appears in the world.
 \param[in] attrib: Attrib struct that contains information on what will be drawn.
 \param[in] buffer: Buffer that will be used for the drawing.
 */
@@ -742,7 +742,7 @@ int _gen_sign_buffer(
 
 /**
 Creates the buffer that will be used for a sign in a chunk.
-\param[out] chunk: The chunk that contains the sign.
+\param[in,out] chunk: The chunk that contains the sign.
 */
 void gen_sign_buffer(Chunk *chunk)
 {
@@ -1097,7 +1097,7 @@ void compute_chunk(WorkerItem *item)
 
 /**
 Generates the chunk to prepare it to be rendered.
-\param[out] chunk: The pointer for the chunk that will be generated.
+\param[in,out] chunk: The pointer for the chunk that will be generated.
 \param[in] item: Struct that contains the data that will be used to calculate the data for the chunk.
 */
 void generate_chunk(Chunk *chunk, WorkerItem *item)
