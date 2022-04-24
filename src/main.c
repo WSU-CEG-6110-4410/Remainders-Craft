@@ -43,6 +43,10 @@
 static Model model;
 static Model *g = &model;
 
+/**
+This function is used to get the in-game time of day. Returns a float that holds the current time.
+\return A float value that represents the current time of day.
+*/
 float time_of_day()
 {
     if (g->day_length <= 0)
@@ -56,6 +60,10 @@ float time_of_day()
     return t;
 }
 
+/**
+This function is used to determine the daylight that needs to be present in the world based on the time of day.
+\return A float value for the amount of light that needs to render.
+*/
 float get_daylight()
 {
     float timer = time_of_day();
@@ -71,6 +79,10 @@ float get_daylight()
     }
 }
 
+/**
+This function determines how much the game needs to scale renders based on the size of the game window.
+\return The amount that graphics need to be scaled by.
+*/
 int get_scale_factor()
 {
     int window_width, window_height;
@@ -83,7 +95,10 @@ int get_scale_factor()
     return result;
 }
 
-
+/**
+This function creates the graphic buffer that is used to render the crosshair on the display.
+\return The buffer for the corsshair render.
+*/
 GLuint gen_crosshair_buffer()
 {
     int x = g->width / 2;
@@ -95,6 +110,14 @@ GLuint gen_crosshair_buffer()
     return gen_buffer(sizeof(data), data);
 }
 
+/**
+This function creates the graphic buffer that is used to render the wireframes in the game. Wireframs are used by obstacle items.
+\param[in} x: The x value to be used for the wireframe.
+\param[in} y: The y value to be used for the wireframe.
+\param[in} z: The z value to be used for the wireframe.
+\param[in} n: Used to calculate the offset of axes.
+\return The buffer for the wireframe render.
+*/
 GLuint gen_wireframe_buffer(float x, float y, float z, float n)
 {
     float data[72];
@@ -102,6 +125,10 @@ GLuint gen_wireframe_buffer(float x, float y, float z, float n)
     return gen_buffer(sizeof(data), data);
 }
 
+/**
+This function creates the graphic buffer that is used to render the sky.
+\return The buffer for the sky render.
+*/
 GLuint gen_sky_buffer()
 {
     float data[12288];
@@ -109,6 +136,15 @@ GLuint gen_sky_buffer()
     return gen_buffer(sizeof(data), data);
 }
 
+/**
+This function creates the graphic buffer that is used to render all non-plant items.
+\param[in} x: The x value to be used for the cube.
+\param[in} y: The y value to be used for the cube.
+\param[in} z: The z value to be used for the cube.
+\param[in} n: Used to calculate the offset of axes.
+\param[in} w: Value for the item that the cube will be used for.
+\return The buffer for the cube render.
+*/
 GLuint gen_cube_buffer(float x, float y, float z, float n, int w)
 {
     GLfloat *data = malloc_faces(10, 6);
@@ -124,6 +160,15 @@ GLuint gen_cube_buffer(float x, float y, float z, float n, int w)
     return gen_faces(10, 6, data);
 }
 
+/**
+This function creates the graphic buffer that is used to render all plant items.
+\param[in} x: The x value to be used for the plant.
+\param[in} y: The y value to be used for the plant.
+\param[in} z: The z value to be used for the plant.
+\param[in} n: Used to calculate the offset of axes.
+\param[in} w: Value for the plant type that the buffer will be used for.
+\return The buffer for the plant render.
+*/
 GLuint gen_plant_buffer(float x, float y, float z, float n, int w)
 {
     GLfloat *data = malloc_faces(10, 4);
@@ -133,6 +178,15 @@ GLuint gen_plant_buffer(float x, float y, float z, float n, int w)
     return gen_faces(10, 4, data);
 }
 
+/**
+This function creates the graphic buffer that is used to render players.
+\param[in} x: The x value to be used for the player.
+\param[in} y: The y value to be used for the player.
+\param[in} z: The z value to be used for the player.
+\param[in} rx: The x rotation of the player.
+\param[in} ry: The y rotation of the player.
+\return A function call to generate the faces of the player.
+*/
 GLuint gen_player_buffer(float x, float y, float z, float rx, float ry)
 {
     GLfloat *data = malloc_faces(10, 6);
@@ -140,6 +194,14 @@ GLuint gen_player_buffer(float x, float y, float z, float rx, float ry)
     return gen_faces(10, 6, data);
 }
 
+/**
+This function creates the graphic buffer that is used to render all in-game text.
+\param[in} x: The x value to be used for the text.
+\param[in} y: The y value to be used for the text.
+\param[in} n: Used to calculate the offset of axes.
+\param[in] text: The text that will be displayed.
+\return A function call to generate the faces of the text.
+*/
 GLuint gen_text_buffer(float x, float y, float n, char *text)
 {
     int length = strlen(text);
@@ -152,6 +214,12 @@ GLuint gen_text_buffer(float x, float y, float n, char *text)
     return gen_faces(4, length, data);
 }
 
+/**
+Used to draw chunks and items in the game world
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_3d_ao(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -171,6 +239,12 @@ void draw_triangles_3d_ao(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw text that displays on signs in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_3d_text(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -186,6 +260,12 @@ void draw_triangles_3d_text(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw the skybox for the world
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_3d(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -205,6 +285,12 @@ void draw_triangles_3d(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw text that displays in the world. Used for the text that displays at the top of the GUI.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_2d(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -220,6 +306,12 @@ void draw_triangles_2d(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw lines that are used for the crosshairs and wireframes.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_lines(Attrib *attrib, GLuint buffer, int components, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -231,16 +323,33 @@ void draw_lines(Attrib *attrib, GLuint buffer, int components, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Draws a world chunk that displays the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] chunk: Pointer to the specific chunk that will be drawn.
+*/
 void draw_chunk(Attrib *attrib, Chunk *chunk)
 {
     draw_triangles_3d_ao(attrib, chunk->buffer, chunk->faces * 6);
 }
 
+/**
+Used to draw items that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_item(Attrib *attrib, GLuint buffer, int count)
 {
     draw_triangles_3d_ao(attrib, buffer, count);
 }
 
+/**
+Used to handle drawing text.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] length: How long the text is that will be drawn.
+*/
 void draw_text(Attrib *attrib, GLuint buffer, int length)
 {
     glEnable(GL_BLEND);
@@ -249,6 +358,11 @@ void draw_text(Attrib *attrib, GLuint buffer, int length)
     glDisable(GL_BLEND);
 }
 
+/**
+Draws signs that will be present in the chunk.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] chunk: Pointer to the specific chunk that will be drawn.
+*/
 void draw_signs(Attrib *attrib, Chunk *chunk)
 {
     glEnable(GL_POLYGON_OFFSET_FILL);
@@ -257,6 +371,12 @@ void draw_signs(Attrib *attrib, Chunk *chunk)
     glDisable(GL_POLYGON_OFFSET_FILL);
 }
 
+/**
+Used to draw items that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] length: How long the text on the sign is.
+*/
 void draw_sign(Attrib *attrib, GLuint buffer, int length)
 {
     glEnable(GL_POLYGON_OFFSET_FILL);
@@ -265,21 +385,41 @@ void draw_sign(Attrib *attrib, GLuint buffer, int length)
     glDisable(GL_POLYGON_OFFSET_FILL);
 }
 
+/**
+Handles drawing all items that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+*/
 void draw_cube(Attrib *attrib, GLuint buffer)
 {
     draw_item(attrib, buffer, 36);
 }
 
+/**
+Handles drawing all plants that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+*/
 void draw_plant(Attrib *attrib, GLuint buffer)
 {
     draw_item(attrib, buffer, 24);
 }
 
+/**
+Handles drawing all players that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+*/
 void draw_player(Attrib *attrib, Player *player)
 {
     draw_cube(attrib, player->buffer);
 }
 
+/**
+Returns that player information that matches the passed player ID.
+\param[in] id: The ID for the player that will be searched for.
+\return The player struct for the matching ID.
+*/
 Player *find_player(int id)
 {
     for (int i = 0; i < g->player_count; i++)
@@ -293,6 +433,16 @@ Player *find_player(int id)
     return 0;
 }
 
+/**
+Updates the position and status of a player in the world.
+\param[in] player: Pointer for the player that will be updated.
+\param[in] x: x coord of the player.
+\param[in] y: y coord of the player.
+\param[in] z: z coord of the player.
+\param[in] rx: x rotation of the player.
+\param[in] ry: y rotation of the player.
+\param[in] interpolate: 1 or 0 depending on whether the player is moving when the update function is called.
+*/
 void update_player(Player *player,
                    float x, float y, float z, float rx, float ry, int interpolate)
 {
@@ -329,6 +479,10 @@ void update_player(Player *player,
     }
 }
 
+/**
+Handles how movement is displayed for the player model.
+\param[in] player: Pointer for the player that will be updated.
+\*/
 void interpolate_player(Player *player)
 {
     State *s1 = &player->state1;
@@ -348,6 +502,10 @@ void interpolate_player(Player *player)
         0);
 }
 
+/**
+Removes the player from the world.
+\param[in] id: The ID of the player that is to be deleted.
+*/
 void delete_player(int id)
 {
     Player *player = find_player(id);
@@ -362,6 +520,9 @@ void delete_player(int id)
     g->player_count = count;
 }
 
+/**
+Removes all players from the world.
+*/
 void delete_all_players()
 {
     for (int i = 0; i < g->player_count; i++)
@@ -372,6 +533,12 @@ void delete_all_players()
     g->player_count = 0;
 }
 
+/**
+Calculates the distance between two players
+\param[in] p1: Pointer for the first player to be used in the equation.
+\param[in] p2: Pointer for the second st player to be used in the equation.
+\return The calculated distance between two players.
+*/
 float player_player_distance(Player *p1, Player *p2)
 {
     State *s1 = &p1->state;
@@ -381,6 +548,7 @@ float player_player_distance(Player *p1, Player *p2)
     float z = s2->z - s1->z;
     return sqrtf(x * x + y * y + z * z);
 }
+
 
 float player_crosshair_distance(Player *p1, Player *p2)
 {
