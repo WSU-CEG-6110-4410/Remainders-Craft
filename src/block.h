@@ -5,7 +5,7 @@
 #include "db.h"
 
 /// [issue](https://github.com/WSU-CEG-6110-4410/Remainders-Craft/issues/8)
-/// These functions were derived from main.c. Further documentation is necessary.
+/// [issue](https://github.com/WSU-CEG-6110-4410/Remainders-Craft/issues/21)
 
 void unset_sign_face(int x, int y, int z, int face, Model *model);
 
