@@ -1,10 +1,8 @@
 #include "item.h"
 #include "util.h"
 
-/**
-The item array contains all the types of items the player can build with
-*/
 const int items[] = {
+    // items the user can build
     GRASS,
     SAND,
     STONE,
@@ -27,6 +25,8 @@ const int items[] = {
     SUN_FLOWER,
     WHITE_FLOWER,
     BLUE_FLOWER,
+    BLUEWOOD,
+    GOLD,
     COLOR_00,
     COLOR_01,
     COLOR_02,
@@ -63,9 +63,6 @@ const int items[] = {
 
 const int item_count = sizeof(items) / sizeof(int);
 
-/**
-The blocks array contains the number values that are used to identify the type of block
-*/
 const int blocks[256][6] = {
     // w => (left, right, top, bottom, front, back) tiles
     {0, 0, 0, 0, 0, 0}, // 0 - empty
@@ -92,8 +89,8 @@ const int blocks[256][6] = {
     {0, 0, 0, 0, 0, 0}, // 21
     {0, 0, 0, 0, 0, 0}, // 22
     {0, 0, 0, 0, 0, 0}, // 23
-    {0, 0, 0, 0, 0, 0}, // 24
-    {0, 0, 0, 0, 0, 0}, // 25
+    {80, 80, 96, 64, 80, 80}, // 24 - BLUEWOOD
+    {65, 65, 65, 65, 65, 65}, // 25 - GOLD
     {0, 0, 0, 0, 0, 0}, // 26
     {0, 0, 0, 0, 0, 0}, // 27
     {0, 0, 0, 0, 0, 0}, // 28
@@ -134,9 +131,6 @@ const int blocks[256][6] = {
     {207, 207, 207, 207, 207, 207}, // 63
 };
 
-/**
-The plants array contains the ID values for all of the plant types
-*/
 const int plants[256] = {
     // w => tile
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 0 - 16
@@ -149,10 +143,6 @@ const int plants[256] = {
     54, // 23 - blue flower
 };
 
-/**
-Checks to see if a passed item value is that of one of the plant types
-\param[in] w: The value that will be checked
-*/
 int is_plant(int w) {
     switch (w) {
         case TALL_GRASS:
@@ -168,10 +158,6 @@ int is_plant(int w) {
     }
 }
 
-/**
-Checks to see if a passed item value is that of one of the obstacle types. Empty and Cloud blocks are the only non-obstacle blocks.
-\param[in] w: The value that will be checked
-*/
 int is_obstacle(int w) {
     w = ABS(w);
     if (is_plant(w)) {
@@ -186,11 +172,6 @@ int is_obstacle(int w) {
     }
 }
 
-/**
-Checks to see if a passed item value is transparent, meaning that objects can be seen on the other
-side of the object if it is textured to have empty space.
-\param[in] w: The value that will be checked
-*/
 int is_transparent(int w) {
     if (w == EMPTY) {
         return 1;
@@ -209,10 +190,6 @@ int is_transparent(int w) {
     }
 }
 
-/**
-Checks to see if a passed item value is able to be destroyed. Currently, only Empty and Cloud types cannot be destoryed.
-\param[in] w: The value that will be checked
-*/
 int is_destructable(int w) {
     switch (w) {
         case EMPTY:
