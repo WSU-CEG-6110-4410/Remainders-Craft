@@ -43,6 +43,10 @@
 static Model model;
 static Model *g = &model;
 
+/**
+This function is used to get the in-game time of day. Returns a float that holds the current time.
+\return A float value that represents the current time of day.
+*/
 float time_of_day()
 {
     if (g->day_length <= 0)
@@ -56,6 +60,10 @@ float time_of_day()
     return t;
 }
 
+/**
+This function is used to determine the daylight that needs to be present in the world based on the time of day.
+\return A float value for the amount of light that needs to render.
+*/
 float get_daylight()
 {
     float timer = time_of_day();
@@ -71,6 +79,10 @@ float get_daylight()
     }
 }
 
+/**
+This function determines how much the game needs to scale renders based on the size of the game window.
+\return The amount that graphics need to be scaled by.
+*/
 int get_scale_factor()
 {
     int window_width, window_height;
@@ -83,7 +95,10 @@ int get_scale_factor()
     return result;
 }
 
-
+/**
+This function creates the graphic buffer that is used to render the crosshair on the display.
+\return The buffer for the corsshair render.
+*/
 GLuint gen_crosshair_buffer()
 {
     int x = g->width / 2;
@@ -95,6 +110,14 @@ GLuint gen_crosshair_buffer()
     return gen_buffer(sizeof(data), data);
 }
 
+/**
+This function creates the graphic buffer that is used to render the wireframes in the game. Wireframs are used by obstacle items.
+\param[in] x: The x value to be used for the wireframe.
+\param[in] y: The y value to be used for the wireframe.
+\param[in] z: The z value to be used for the wireframe.
+\param[in] n: Used to calculate the offset of axes.
+\return The buffer for the wireframe render.
+*/
 GLuint gen_wireframe_buffer(float x, float y, float z, float n)
 {
     float data[72];
@@ -102,6 +125,10 @@ GLuint gen_wireframe_buffer(float x, float y, float z, float n)
     return gen_buffer(sizeof(data), data);
 }
 
+/**
+This function creates the graphic buffer that is used to render the sky.
+\return The buffer for the sky render.
+*/
 GLuint gen_sky_buffer()
 {
     float data[12288];
@@ -109,6 +136,15 @@ GLuint gen_sky_buffer()
     return gen_buffer(sizeof(data), data);
 }
 
+/**
+This function creates the graphic buffer that is used to render all non-plant items.
+\param[in] x: The x value to be used for the cube.
+\param[in] y: The y value to be used for the cube.
+\param[in] z: The z value to be used for the cube.
+\param[in] n: Used to calculate the offset of axes.
+\param[in] w: Value for the item that the cube will be used for.
+\return The buffer for the cube render.
+*/
 GLuint gen_cube_buffer(float x, float y, float z, float n, int w)
 {
     GLfloat *data = malloc_faces(10, 6);
@@ -124,6 +160,15 @@ GLuint gen_cube_buffer(float x, float y, float z, float n, int w)
     return gen_faces(10, 6, data);
 }
 
+/**
+This function creates the graphic buffer that is used to render all plant items.
+\param[in] x: The x value to be used for the plant.
+\param[in] y: The y value to be used for the plant.
+\param[in] z: The z value to be used for the plant.
+\param[in] n: Used to calculate the offset of axes.
+\param[in] w: Value for the plant type that the buffer will be used for.
+\return The buffer for the plant render.
+*/
 GLuint gen_plant_buffer(float x, float y, float z, float n, int w)
 {
     GLfloat *data = malloc_faces(10, 4);
@@ -133,6 +178,15 @@ GLuint gen_plant_buffer(float x, float y, float z, float n, int w)
     return gen_faces(10, 4, data);
 }
 
+/**
+This function creates the graphic buffer that is used to render players.
+\param[in] x: The x value to be used for the player.
+\param[in] y: The y value to be used for the player.
+\param[in] z: The z value to be used for the player.
+\param[in] rx: The x rotation of the player.
+\param[in] ry: The y rotation of the player.
+\return A function call to generate the faces of the player.
+*/
 GLuint gen_player_buffer(float x, float y, float z, float rx, float ry)
 {
     GLfloat *data = malloc_faces(10, 6);
@@ -140,6 +194,14 @@ GLuint gen_player_buffer(float x, float y, float z, float rx, float ry)
     return gen_faces(10, 6, data);
 }
 
+/**
+This function creates the graphic buffer that is used to render all in-game text.
+\param[in] x: The x value to be used for the text.
+\param[in] y: The y value to be used for the text.
+\param[in] n: Used to calculate the offset of axes.
+\param[in] text: The text that will be displayed.
+\return A function call to generate the faces of the text.
+*/
 GLuint gen_text_buffer(float x, float y, float n, char *text)
 {
     int length = strlen(text);
@@ -152,6 +214,12 @@ GLuint gen_text_buffer(float x, float y, float n, char *text)
     return gen_faces(4, length, data);
 }
 
+/**
+Used to draw chunks and items in the game world
+\param[in,out] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_3d_ao(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -171,6 +239,12 @@ void draw_triangles_3d_ao(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw text that displays on signs in the world.
+\param[in,out] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_3d_text(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -186,6 +260,12 @@ void draw_triangles_3d_text(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw the skybox for the world
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_3d(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -205,6 +285,12 @@ void draw_triangles_3d(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw text that displays in the world. Used for the text that displays at the top of the GUI.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_triangles_2d(Attrib *attrib, GLuint buffer, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -220,6 +306,12 @@ void draw_triangles_2d(Attrib *attrib, GLuint buffer, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Used to draw lines that are used for the crosshairs and wireframes.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_lines(Attrib *attrib, GLuint buffer, int components, int count)
 {
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -231,16 +323,33 @@ void draw_lines(Attrib *attrib, GLuint buffer, int components, int count)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+/**
+Draws a world chunk that displays the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] chunk: Pointer to the specific chunk that will be drawn.
+*/
 void draw_chunk(Attrib *attrib, Chunk *chunk)
 {
     draw_triangles_3d_ao(attrib, chunk->buffer, chunk->faces * 6);
 }
 
+/**
+Used to draw items that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] count: How many need to be drawn.
+*/
 void draw_item(Attrib *attrib, GLuint buffer, int count)
 {
     draw_triangles_3d_ao(attrib, buffer, count);
 }
 
+/**
+Used to handle drawing text.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] length: How long the text is that will be drawn.
+*/
 void draw_text(Attrib *attrib, GLuint buffer, int length)
 {
     glEnable(GL_BLEND);
@@ -249,6 +358,11 @@ void draw_text(Attrib *attrib, GLuint buffer, int length)
     glDisable(GL_BLEND);
 }
 
+/**
+Draws signs that will be present in the chunk.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] chunk: Pointer to the specific chunk that will be drawn.
+*/
 void draw_signs(Attrib *attrib, Chunk *chunk)
 {
     glEnable(GL_POLYGON_OFFSET_FILL);
@@ -257,6 +371,12 @@ void draw_signs(Attrib *attrib, Chunk *chunk)
     glDisable(GL_POLYGON_OFFSET_FILL);
 }
 
+/**
+Used to text that appears on signs in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+\param[in] length: How long the text on the sign is.
+*/
 void draw_sign(Attrib *attrib, GLuint buffer, int length)
 {
     glEnable(GL_POLYGON_OFFSET_FILL);
@@ -265,21 +385,41 @@ void draw_sign(Attrib *attrib, GLuint buffer, int length)
     glDisable(GL_POLYGON_OFFSET_FILL);
 }
 
+/**
+Handles drawing all items that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+*/
 void draw_cube(Attrib *attrib, GLuint buffer)
 {
     draw_item(attrib, buffer, 36);
 }
 
+/**
+Handles drawing all plants that appear in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+*/
 void draw_plant(Attrib *attrib, GLuint buffer)
 {
     draw_item(attrib, buffer, 24);
 }
 
+/**
+Handles drawing a player that appears in the world.
+\param[in] attrib: Attrib struct that contains information on what will be drawn.
+\param[in] buffer: Buffer that will be used for the drawing.
+*/
 void draw_player(Attrib *attrib, Player *player)
 {
     draw_cube(attrib, player->buffer);
 }
 
+/**
+Returns that player information that matches the passed player ID.
+\param[in] id: The ID for the player that will be searched for.
+\return The player struct for the matching ID.
+*/
 Player *find_player(int id)
 {
     for (int i = 0; i < g->player_count; i++)
@@ -293,6 +433,16 @@ Player *find_player(int id)
     return 0;
 }
 
+/**
+Updates the position and status of a player in the world.
+\param[in] player: Pointer for the player that will be updated.
+\param[in] x: x coord of the player.
+\param[in] y: y coord of the player.
+\param[in] z: z coord of the player.
+\param[in] rx: x rotation of the player.
+\param[in] ry: y rotation of the player.
+\param[in] interpolate: 1 or 0 depending on whether the player is moving when the update function is called.
+*/
 void update_player(Player *player,
                    float x, float y, float z, float rx, float ry, int interpolate)
 {
@@ -329,6 +479,10 @@ void update_player(Player *player,
     }
 }
 
+/**
+Handles how movement is displayed for the player model.
+\param[out] player: Pointer for the player that will be updated.
+\*/
 void interpolate_player(Player *player)
 {
     State *s1 = &player->state1;
@@ -348,6 +502,10 @@ void interpolate_player(Player *player)
         0);
 }
 
+/**
+Removes the player from the world.
+\param[in] id: The ID of the player that is to be deleted.
+*/
 void delete_player(int id)
 {
     Player *player = find_player(id);
@@ -362,6 +520,9 @@ void delete_player(int id)
     g->player_count = count;
 }
 
+/**
+Removes all players from the world.
+*/
 void delete_all_players()
 {
     for (int i = 0; i < g->player_count; i++)
@@ -372,6 +533,12 @@ void delete_all_players()
     g->player_count = 0;
 }
 
+/**
+Calculates the distance between two players
+\param[in] p1: Pointer for the first player to be used in the equation.
+\param[in] p2: Pointer for the second st player to be used in the equation.
+\return The calculated distance between two players.
+*/
 float player_player_distance(Player *p1, Player *p2)
 {
     State *s1 = &p1->state;
@@ -382,6 +549,11 @@ float player_player_distance(Player *p1, Player *p2)
     return sqrtf(x * x + y * y + z * z);
 }
 
+/**
+Calculates the distance between where one player's crosshair is and the location of another player's character location.
+\param[in] p1: The first player whose crosshairs will be checked.
+\param[in] p2: The second player, who is the target.
+*/
 float player_crosshair_distance(Player *p1, Player *p2)
 {
     State *s1 = &p1->state;
@@ -402,6 +574,11 @@ float player_crosshair_distance(Player *p1, Player *p2)
     return sqrtf(x * x + y * y + z * z);
 }
 
+/**
+Handles processes involving the player's crosshair. This function is used to call other functions to check what should happen.
+\param[in] player: The player whose crosshair is the subject of the check.
+\return The result of the action as a player state.
+*/
 Player *player_crosshair(Player *player)
 {
     Player *result = 0;
@@ -428,6 +605,15 @@ Player *player_crosshair(Player *player)
     return result;
 }
 
+/**
+Checks to see if a chunk is visible to the player.
+\param[in] planes: The planes that the chunk is composed of.
+\param[in] p: Used to calculate the size of the x-axis of the chunk.
+\param[in] q: Used to calculate the size of the z-axis of the chunk.
+\param[in] miny: Smallest y value that exists in the chunk.
+\param[in] maxy: LArgest y value that exists in the chunk.
+\return Returns 1 if the chunk is visible and 0 if it is not.
+*/
 int chunk_visible(float planes[6][4], int p, int q, int miny, int maxy)
 {
     int x = p * CHUNK_SIZE - 1;
@@ -475,6 +661,16 @@ int chunk_visible(float planes[6][4], int p, int q, int miny, int maxy)
     return 1;
 }
 
+/**
+Used to create the faces of the text when it is being rendered.
+\param[in] data: Memory allocated to hold the faces of what will be rendered.
+\param[in] x: x value of the sign that will be rendered.
+\param[in] y: y value of the sign that will be rendered.
+\param[in] z: z value of the sign that will be rendered.
+\param[in] face: Number of faces the sign has.
+\param[in] text: The text that the sign displays.
+\return The length of the sign. (Unsure)
+*/
 int _gen_sign_buffer(
     GLfloat *data, float x, float y, float z, int face, const char *text)
 {
@@ -544,6 +740,10 @@ int _gen_sign_buffer(
     return count;
 }
 
+/**
+Creates the buffer that will be used for a sign in a chunk.
+\param[in,out] chunk: The chunk that contains the sign.
+*/
 void gen_sign_buffer(Chunk *chunk)
 {
     SignList *signs = &chunk->signs;
@@ -571,6 +771,14 @@ void gen_sign_buffer(Chunk *chunk)
     chunk->sign_faces = faces;
 }
 
+/**
+Checks for occlusion in the world. This allows for blocks to be hidden behind other blocks. (Unsure about the params)
+\param[in] neighbors: Neighboring items.
+\param[in] lights: All lights that will be checked for occlusion.
+\param[in] shades: Holds the information that will be used for determining how shade is displayed.
+\param[in] ao: Used for ambient occlusion.
+\param[in] light: Holds the value for the light after checking for occlusion.
+*/
 void occlusion(
     char neighbors[27], char lights[27], float shades[27],
     float ao[6][4], float light[6][4])
@@ -624,6 +832,16 @@ void occlusion(
 #define XYZ(x, y, z) ((y)*XZ_SIZE * XZ_SIZE + (x)*XZ_SIZE + (z))
 #define XZ(x, z) ((x)*XZ_SIZE + (z))
 
+/**
+Generates light for the world
+\param[in] opaque: Used to determine if an object is opaque or not.
+\param[in] light: Array for the light values in the world.
+\param[in] x: x for determining light generation location.
+\param[in] y: y for determining light generation location.
+\param[in] z: z for determining light generation location.
+\param[in] w: Scale for x, y, z
+\param[in] force: Determines if light generation should be forced or not.
+*/
 void light_fill(
     char *opaque, char *light,
     int x, int y, int z, int w, int force)
@@ -657,6 +875,10 @@ void light_fill(
     light_fill(opaque, light, x, y, z + 1, w, 0);
 }
 
+/**
+Handles all the calculations for the generation of a chunk. Generates all of the data that goes into a chunk.
+\param[in] item: Struct that contains the data that will be used to calculate the data for the chunk.
+*/
 void compute_chunk(WorkerItem *item)
 {
     char *opaque = (char *)calloc(XZ_SIZE * XZ_SIZE * Y_SIZE, sizeof(char));
@@ -873,6 +1095,11 @@ void compute_chunk(WorkerItem *item)
     item->data = data;
 }
 
+/**
+Generates the chunk to prepare it to be rendered.
+\param[in,out] chunk: The pointer for the chunk that will be generated.
+\param[in] item: Struct that contains the data that will be used to calculate the data for the chunk.
+*/
 void generate_chunk(Chunk *chunk, WorkerItem *item)
 {
     chunk->miny = item->miny;
@@ -883,6 +1110,10 @@ void generate_chunk(Chunk *chunk, WorkerItem *item)
     gen_sign_buffer(chunk);
 }
 
+/**
+Creates the buffer that is used for generating a chunk.
+\param[out] chunk: The chunk that the buffer will be for.
+*/
 void gen_chunk_buffer(Chunk *chunk)
 {
     WorkerItem _item;
@@ -915,12 +1146,24 @@ void gen_chunk_buffer(Chunk *chunk)
     chunk->dirty = 0;
 }
 
+/**
+Used in part of the create_world function. Passed in to be used for map creation.
+\param[in] x: Value used for creating the x axis for the map.
+\param[in] y: Value used for creating the y axis for the map.
+\param[in] z: Value used for creating the z axis for the map.
+\param[in] w: Value used to scale the axes for the map.
+\param[in] arg: This is used for passing a map into the fucntion.
+*/
 void map_set_func(int x, int y, int z, int w, void *arg)
 {
     Map *map = (Map *)arg;
     map_set(map, x, y, z, w);
 }
 
+/**
+Loads a chunk into the world and prepares it to be rendered.
+\param[in] item: Struct that contains the data that will be used to calculate the data for the chunk.
+*/
 void load_chunk(WorkerItem *item)
 {
     int p = item->p;
@@ -932,12 +1175,23 @@ void load_chunk(WorkerItem *item)
     db_load_lights(light_map, p, q);
 }
 
+/**
+Requests chunk information from the client
+\param[in] p: Part of the set to find the referenced chunk.
+\param[in] q: Part of the set to find the referenced chunk.
+*/
 void request_chunk(int p, int q)
 {
     int key = db_get_key(p, q);
     client_chunk(p, q, key);
 }
 
+/**
+Initializes a a chunk with all the data it needs.
+\param[out] chunk: The pointer for the chunk that will be initialized.
+\param[in] p: Part of the set to identify the chunk.
+\param[in] q: Part of the set to identify the chunk.
+*/
 void init_chunk(Chunk *chunk, int p, int q)
 {
     chunk->p = p;
@@ -959,6 +1213,12 @@ void init_chunk(Chunk *chunk, int p, int q)
     map_alloc(light_map, dx, dy, dz, 0xf);
 }
 
+/**
+Calls the chunk initialization and then uses that data to create the chunk.
+\param[out] chunk: The pointer for the chunk that will be created.
+\param[in] p: Part of the set to identify the chunk.
+\param[in] q: Part of the set to identify the chunk.
+*/
 void create_chunk(Chunk *chunk, int p, int q)
 {
     init_chunk(chunk, p, q);
@@ -974,6 +1234,9 @@ void create_chunk(Chunk *chunk, int p, int q)
     request_chunk(p, q);
 }
 
+/**
+Deletes chunks that are marked for deletion.
+*/
 void delete_chunks()
 {
     int count = g->chunk_count;
@@ -1010,6 +1273,9 @@ void delete_chunks()
     g->chunk_count = count;
 }
 
+/**
+Deletes all chunks in the game world.
+*/
 void delete_all_chunks()
 {
     for (int i = 0; i < g->chunk_count; i++)
@@ -1024,6 +1290,9 @@ void delete_all_chunks()
     g->chunk_count = 0;
 }
 
+/**
+Checks if worker objects have finished their tasks and sets them to idle if they have.
+*/
 void check_workers()
 {
     for (int i = 0; i < WORKERS; i++)
@@ -1072,6 +1341,9 @@ void check_workers()
     }
 }
 
+/**
+Forces a chunk to be generated.
+*/
 void force_chunks(Player *player)
 {
     State *s = &player->state;
@@ -1102,6 +1374,11 @@ void force_chunks(Player *player)
     }
 }
 
+/**
+Checks that the chunks have been created correctly.
+\param[in] player: The player that caused the chunk to spawn.
+\param[in] worker: The worker in charge of the chunk.
+*/
 void ensure_chunks_worker(Player *player, Worker *worker)
 {
     State *s = &player->state;
@@ -1205,6 +1482,10 @@ void ensure_chunks_worker(Player *player, Worker *worker)
     cnd_signal(&worker->cnd);
 }
 
+/**
+Creates the worker for ensure_chunks and calls it to prepare for the creation of a chunk
+\param[in] player: 
+*/
 void ensure_chunks(Player *player)
 {
     check_workers();
@@ -1221,6 +1502,10 @@ void ensure_chunks(Player *player)
     }
 }
 
+/**
+Starts up a worker on a new task.
+\param[in] arg: What the worker will run.
+*/
 int worker_run(void *arg)
 {
     Worker *worker = (Worker *)arg;
@@ -1246,6 +1531,11 @@ int worker_run(void *arg)
     return 0;
 }
 
+/**
+Renders chunks to be displayed in the world.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+\param[in] player: Pointer to the player that caused the chunk to render.
+*/
 int render_chunks(Attrib *attrib, Player *player)
 {
     int result = 0;
@@ -1287,6 +1577,11 @@ int render_chunks(Attrib *attrib, Player *player)
     return result;
 }
 
+/**
+Renders signs that appear in the world.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+\param[in] player: Pointer to the player that caused the signs to render.
+*/
 void render_signs(Attrib *attrib, Player *player)
 {
     State *s = &player->state;
@@ -1318,6 +1613,11 @@ void render_signs(Attrib *attrib, Player *player)
     }
 }
 
+/**
+Renders sign text to be displayed in the world.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+\param[in] player: Pointer to the player that caused the sign text to render.
+*/
 void render_sign(Attrib *attrib, Player *player)
 {
     if (!g->typing || g->typing_buffer[0] != CRAFT_KEY_SIGN)
@@ -1348,6 +1648,11 @@ void render_sign(Attrib *attrib, Player *player)
     del_buffer(buffer);
 }
 
+/**
+Renders the players in the world.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+\param[in] player: Pointer to the player that is being rendered.
+*/
 void render_players(Attrib *attrib, Player *player)
 {
     State *s = &player->state;
@@ -1370,6 +1675,12 @@ void render_players(Attrib *attrib, Player *player)
     }
 }
 
+/**
+Renders the sky box.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+\param[in] player: The player that caused the render action.
+\param[in] buffer: The sky buffer that will be used for the render.
+*/
 void render_sky(Attrib *attrib, Player *player, GLuint buffer)
 {
     State *s = &player->state;
@@ -1384,6 +1695,11 @@ void render_sky(Attrib *attrib, Player *player, GLuint buffer)
     draw_triangles_3d(attrib, buffer, 512 * 3);
 }
 
+/**
+Renders wireframes.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+\param[in] player: The player that caused the render action.
+*/
 void render_wireframe(Attrib *attrib, Player *player)
 {
     State *s = &player->state;
@@ -1406,6 +1722,10 @@ void render_wireframe(Attrib *attrib, Player *player)
     }
 }
 
+/**
+Renders the crosshair that appears on the player HUD.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+*/
 void render_crosshairs(Attrib *attrib)
 {
     float matrix[16];
@@ -1420,6 +1740,10 @@ void render_crosshairs(Attrib *attrib)
     glDisable(GL_COLOR_LOGIC_OP);
 }
 
+/**
+Renders items in the world.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+*/
 void render_item(Attrib *attrib)
 {
     float matrix[16];
@@ -1444,6 +1768,15 @@ void render_item(Attrib *attrib)
     }
 }
 
+/**
+Renders text that displays on the player HUD.
+\param[in] attrib: Attrib struct that contains data for all the shaders that will be used.
+\param[in] justify: How the text will be justified where it is drawn.
+\param[in] x: The x location of where the text will start drawing.
+\param[in] y: The y location of where the text will start drawing.
+\param[in] n: Size of the text.
+\param[in] text: Text that will be rendered.
+*/
 void render_text(
     Attrib *attrib, int justify, float x, float y, float n, char *text)
 {
@@ -1460,6 +1793,9 @@ void render_text(
     del_buffer(buffer);
 }
 
+/**
+Creates the display window for the game.
+*/
 void create_window()
 {
     int window_width = WINDOW_WIDTH;
@@ -1477,6 +1813,9 @@ void create_window()
         window_width, window_height, "Craft", monitor, NULL);
 }
 
+/**
+Resets the opengl model for the game.
+*/
 void reset_model()
 {
     memset(g->chunks, 0, sizeof(Chunk) * MAX_CHUNKS);
@@ -1496,6 +1835,17 @@ void reset_model()
     g->time_changed = 1;
 }
 
+/**
+Calculates the vector for motion occuring in game.
+\param[in] flying: Used to determine if the model is currently flying.
+\param[in] sz: Determines forward/backward movement speed.
+\param[in] sx: Determines left/right movement speed.
+\param[in] rx: Determines left/right rotation.
+\param[in] ry: Determines up/down rotation.
+\param[out] vx: The x value of the motion vector.
+\param[out] vy: The y value of the motion vector.
+\param[out] vz: The z value of the motion vector.
+*/
 void get_motion_vector(int flying, int sz, int sx, float rx, float ry,
                        float *vx, float *vy, float *vz)
 {
@@ -1535,6 +1885,14 @@ void get_motion_vector(int flying, int sz, int sx, float rx, float ry,
     }
 }
 
+/**
+Determines if collision occurs with an item in the world.
+\param[in] height: The height of what is initiating the collision. Currently is only for players.
+\param[out] x: x position of what is initiating the collision.
+\param[out] y: y position of what is initiating the collision.
+\param[out] z: z position of what is initiating the collision.
+\param[in] model: The gl model struct.
+*/
 int collide(int height, float *x, float *y, float *z, Model *model)
 {
     int result = 0;
@@ -1585,6 +1943,13 @@ int collide(int height, float *x, float *y, float *z, Model *model)
     return result;
 }
 
+/**
+Calculates the height of the highest block in the game.
+\param[in] x: x position of the player.
+\param[in] z: z position of the player.
+\param[in] model: The gl model struct.
+\return The value for the highest height in the game.
+*/
 int highest_block(float x, float z, Model *model)
 {
     int result = -1;
@@ -1608,6 +1973,11 @@ int highest_block(float x, float z, Model *model)
     return result;
 }
 
+/**
+Handles movement for players in the game. Calls helper functions.
+\param[in] dt: Change in time since the last frame was drawn.
+\param[in] model: The gl model struct.
+*/
 void handle_movement(double dt, Model *model)
 {
     static float dy = 0;
@@ -1688,6 +2058,14 @@ void handle_movement(double dt, Model *model)
     }
 }
 
+/**
+Handles key presses.
+\param[in] window: The GL window that the key was pressed in.
+\param[in] key: key that was pressed.
+\param[in] scancode: Does not appear to be used in the on_key function.
+\param[in] action: The action that was performed on the key.
+\param[in] mods: If there modified controls are used. (Unsure)
+*/
 void on_key_wrapper(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
     if(g){
@@ -1695,6 +2073,11 @@ void on_key_wrapper(GLFWwindow *window, int key, int scancode, int action, int m
     }
 }
 
+/**
+Handles character input when typing in chat.
+\param[in] window: The GL window that the key was pressed in.
+\param[in] u: The unicode value of the character.
+*/
 void on_char_wrapper(GLFWwindow *window, unsigned int u)
 {
     if (g)
@@ -1703,6 +2086,13 @@ void on_char_wrapper(GLFWwindow *window, unsigned int u)
     }
 }
 
+/**
+Handles mouse inputs.
+\param[in] window: The GL window that the key was pressed in.
+\param[in] button: Which mouse button was pressed.
+\param[in] action: The action that was performed on the key.
+\param[in] mods: If there modified controls are used. (Unsure)
+*/
 void on_mouse_button_wrapper(GLFWwindow *window, int button, int action, int mods)
 {
     if (g)
@@ -1711,6 +2101,12 @@ void on_mouse_button_wrapper(GLFWwindow *window, int button, int action, int mod
     }
 }
 
+/**
+Handles mouse scroll action.
+\param[in] window: The GL window that the key was pressed in.
+\param[in] xdelta: Change in the x scrolling, unused.
+\param[in] ydelta: Change in the y scrolling.
+*/
 void on_scroll_wrapper(GLFWwindow *window, double xdelta, double ydelta)
 {
     if (g)
@@ -1719,6 +2115,10 @@ void on_scroll_wrapper(GLFWwindow *window, double xdelta, double ydelta)
     }
 }
 
+/**
+Parses the data that is received from a multiplayer server.
+\param[in] buffer: The data buffer containing data sent from the server.
+*/
 void parse_buffer(char *buffer)
 {
     Player *me = g->players;
@@ -1834,6 +2234,12 @@ void parse_buffer(char *buffer)
     }
 }
 
+/**
+Gets the file path of what is passed in.
+\param[in] relative_folder: The folder that contains the file.
+\param[in] filename: That name of the file that will be used to create the path.
+\return A char array that contains the file path for the requested file.
+*/
 char* get_file_path(char* relative_folder, char* filename){
     char resolved_path[4096];
     realpath(relative_folder, resolved_path);
@@ -1848,6 +2254,12 @@ char* get_file_path(char* relative_folder, char* filename){
     return texture_path;
 }
 
+/**
+The main function for the game. Handles all function calls, creates the window, and runs a loop that updates all game information during play.
+\param[in] argc: Number of arguments passed into the exe.
+\param[in] argv: Arguments that are passed into the game exe.
+\return 0 when the game is closed.
+*/
 int main(int argc, char **argv)
 {
     // INITIALIZATION //
