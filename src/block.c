@@ -5,6 +5,7 @@
 #include "structs.h"
 #include "chunk.h"
 #include "item.h"
+#include "string.h"
 
 void unset_sign_face(int x, int y, int z, int face, Model *model)
 {
