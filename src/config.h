@@ -27,6 +27,9 @@
 #define SHOW_PLAYER_NAMES 1
 
 // key bindings
+/*
+param[in] CRAFT_KEY_CROUCH: Crouch is assigned to the v key
+*/
 #define CRAFT_KEY_FORWARD 'W'
 #define CRAFT_KEY_BACKWARD 'S'
 #define CRAFT_KEY_LEFT 'A'
