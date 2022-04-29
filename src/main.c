@@ -1990,13 +1990,29 @@ void handle_movement(double dt, Model *model)
         model->ortho = glfwGetKey(model->window, CRAFT_KEY_ORTHO) ? 64 : 0;
         model->fov = glfwGetKey(model->window, CRAFT_KEY_ZOOM) ? 15 : 65;
         if (glfwGetKey(model->window, CRAFT_KEY_FORWARD))
-            sz--;
+            if (glfwGetKey(model->window, CRAFT_KEY_CROUCH))
+            	sz = sz * 2;
+	    else
+		    sz--;
+
         if (glfwGetKey(model->window, CRAFT_KEY_BACKWARD))
-            sz++;
+            if (glfwGetKey(model->window, CRAFT_KEY_CROUCH))
+                sz = sz * 2;
+            else
+                    sz++;
+
         if (glfwGetKey(model->window, CRAFT_KEY_LEFT))
-            sx--;
+            if (glfwGetKey(model->window, CRAFT_KEY_CROUCH))
+                sx = sx * 2;
+            else
+                    sx--;
+
         if (glfwGetKey(model->window, CRAFT_KEY_RIGHT))
-            sx++;
+            if (glfwGetKey(model->window, CRAFT_KEY_CROUCH))
+                sx = sx * 2;
+            else
+                    sx++;
+
         if (glfwGetKey(model->window, GLFW_KEY_LEFT))
             s->rx -= m;
         if (glfwGetKey(model->window, GLFW_KEY_RIGHT))
