@@ -29,9 +29,7 @@ int ring_size(Ring *ring) {
         return ring->capacity - (ring->start - ring->end);
     }
 }
-/** This is the ring_grow function
-	@param ring the ring
-*/
+
 void ring_grow(Ring *ring) {
     Ring new_ring;
     RingEntry entry;
