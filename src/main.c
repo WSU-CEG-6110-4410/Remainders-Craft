@@ -1989,7 +1989,6 @@ void handle_movement(double dt, Model *model)
         float m = dt * 1.0;
         model->ortho = glfwGetKey(model->window, CRAFT_KEY_ORTHO) ? 64 : 0;
         model->fov = glfwGetKey(model->window, CRAFT_KEY_ZOOM) ? 15 : 65;
-        issue-7
         if (glfwGetKey(model->window, CRAFT_KEY_FORWARD))
             if (glfwGetKey(model->window, CRAFT_KEY_CROUCH))
             	sz = sz * 2;
@@ -2003,7 +2002,6 @@ When the iteration occurs, it fails to itterate, ending the if statement.
 
 	if (glfwGetKey(model->window, CRAFT_KEY_FORWARD))
             sz--;
-        dev
         if (glfwGetKey(model->window, CRAFT_KEY_BACKWARD))
             if (glfwGetKey(model->window, CRAFT_KEY_CROUCH))
                 sz = sz * 2;

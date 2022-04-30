@@ -410,22 +410,25 @@ void tree(Block *block, Model *model)
     int bx = block->x;
     int by = block->y;
     int bz = block->z;
-    for (int y = by + 3; y < by + 8; y++)
+    int yrand = (rand() % 6);
+    int xzrand = ((rand() % 3) + 2);
+    int smoothrand = ((rand() % 5) + 9);
+    for (int y = by + 3 + yrand; y < by + 8 + yrand; y++)
     {
-        for (int dx = -3; dx <= 3; dx++)
+        for (int dx = -xzrand; dx <= xzrand; dx++)
         {
-            for (int dz = -3; dz <= 3; dz++)
+            for (int dz = -xzrand; dz <= xzrand; dz++)
             {
-                int dy = y - (by + 4);
+                int dy = y - (by + 4 + yrand);
                 int d = (dx * dx) + (dy * dy) + (dz * dz);
-                if (d < 11)
+                if (d < smoothrand)
                 {
                     builder_block(bx + dx, y, bz + dz, 15, model);
                 }
             }
         }
     }
-    for (int y = by; y < by + 7; y++)
+    for (int y = by; y < by + 7 + yrand; y++)
     {
         builder_block(bx, y, bz, 5, model);
     }
