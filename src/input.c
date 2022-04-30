@@ -25,7 +25,7 @@ void handle_mouse_input(Model *model)
     {
         double mx, my;
         glfwGetCursorPos(model->window, &mx, &my);
-        float m = 0.0025;
+        float m = 0.0008;
         s->rx += (mx - px) * m;
         if (INVERT_MOUSE)
         {
